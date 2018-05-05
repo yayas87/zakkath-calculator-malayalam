@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ml">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -7,38 +7,39 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-    <title>Hello, world!</title>
+    <title>Zakkath Calculator - Malayalam</title>
     <style>
-      p {
-      font-size: 9.5px;
-      font-weight:bold;
-      margin: 0;
-      }
-      body {
-      font-size: 11px;
-      background: #F5F5F5;
-      font-weight: bold;
-      }
-      .container {
-      background: #fff;
-      }
-      @media print {
-      button {
-      display: none !important;
-      }
-      .input-group-text, input,
-      textarea {
-      border: none !important;
-      box-shadow: none !important;
-      outline: none !important;
-      }
-      }
+		p {
+			font-size: 9.5px;
+			font-weight:bold;
+			margin: 0;
+		}
+		body {
+		  font-size: 11px;
+		  background: #F5F5F5;
+		  font-weight: bold;
+		}
+	  .container {
+		  background: #fff;
+		}
+	  @media print {
+	  button {
+		display: none !important;
+	  }
+	  .input-group-text, input,
+	  textarea {
+		border: none !important;
+		box-shadow: none !important;
+		outline: none !important;
+	  }
+	}
+
     </style>
   </head>
-  <body>
+<body>
     <script type="text/javascript">
       getPrice = function() {
-      
+	  
         var numVal1 = Number(document.getElementById("a1").value);
         var numVal2 = Number(document.getElementById("a2").value);
         var totalValue = numVal1 * ( numVal2 /100);
@@ -171,12 +172,14 @@
       }
     </script>
     <div class="container">
-      <h2 class="text-center pt-4">Zakkath Calculator</h2>
-      <p class="text-center pb-4">Use Tab Key to Naavigate from Text Fields Easily</p>
-      <div class="">
-      </div>
+    <h2 class="text-center pt-4">Zakkath Calculator</h2>
+	<p class="text-center pb-4">Use Tab Key to Naavigate from Text Fields Easily</p>
+	<div class="">
+	
+	</div>
       <table class="table-sm table table-bordered table-striped table-hover">
         <tr class="text-center" style="font-weight:bold;">
+
           <td class="align-middle">സകാത്ത് ബാധകമാകുന്ന ഇനങ്ങള്‍</td>
           <td class="align-middle">ബാധകമാകുന്ന പരിധി</td>
           <td class="align-middle">കൈവശമുള്ള അളവ്	</td>
@@ -190,14 +193,14 @@
           <td class="align-middle"><input tabindex="1" placeholder="Qty" class="form-control form-control-sm text-right" type="text" id="qty1"></td>
           <td class="align-middle"><input  placeholder="Rs."  class="form-control form-control-sm text-right" tabindex="2" type="text" id="a1" onkeyup="calculate()"></td>
           <td class="align-middle">
-            <div class="input-group input-group-sm">
+			<div class="input-group input-group-sm">
               <input  class="form-control form-control-sm text-right"type="text"  value="2.5" id="a2" onkeyup="calculate()" readonly>
               <div class="input-group-append">
                 <span class="input-group-text" id="basic-addon2">%</span>
               </div>
             </div>
-          </td>
-          <td class="align-middle"><input  class="form-control form-control-sm text-right" type="text" readonly id="Tot1" onkeyup="calculate()"></td>
+		 </td>
+         <td class="align-middle"><input  class="form-control form-control-sm text-right" type="text" readonly id="Tot1" onkeyup="calculate()"></td>
         </tr>
         <tr>
           <td class="align-middle">വെള്ളി </td>
@@ -205,14 +208,14 @@
           <td class="align-middle"><input tabindex="3" placeholder="Qty" class="form-control form-control-sm text-right" type="text" id="qty1"></td>
           <td class="align-middle"><input tabindex="4" placeholder="Rs."  class="form-control form-control-sm text-right" type="text" id="b1" onkeyup="calculate()"></td>
           <td class="align-middle">
-            <div class="input-group input-group-sm">
+			<div class="input-group input-group-sm">
               <input  class="form-control form-control-sm text-right"type="text"  value="2.5" id="b2" onkeyup="calculate()" readonly>
               <div class="input-group-append">
                 <span class="input-group-text" id="basic-addon2">%</span>
               </div>
             </div>
-          </td>
-          <td class="align-middle"><input  class="form-control form-control-sm text-right"type="text" readonly id="Tot2" onkeyup="calculate()"></td>
+		 </td>
+         <td class="align-middle"><input  class="form-control form-control-sm text-right"type="text" readonly id="Tot2" onkeyup="calculate()"></td>
         </tr>
         <tr>
           <td class="align-middle" rowspan="2"> നെല്ല്, നാളികേരം, അടക്ക</td>
@@ -220,28 +223,28 @@
           <td class="align-middle"><input tabindex="5" placeholder="Qty" class="form-control form-control-sm text-right" type="text" id="qty1"></td>
           <td class="align-middle"><input tabindex="6" placeholder="Rs."  class="form-control form-control-sm text-right" type="text" id="c1" onkeyup="calculate()"></td>
           <td class="align-middle">
-            <div class="input-group input-group-sm">
+			<div class="input-group input-group-sm">
               <input  class="form-control form-control-sm text-right"type="text"  value="10" id="c2" onkeyup="calculate()" readonly>
               <div class="input-group-append">
                 <span class="input-group-text" id="basic-addon2">%</span>
               </div>
             </div>
-          </td>
-          <td class="align-middle"><input  class="form-control form-control-sm text-right"type="text" readonly id="Tot3" onkeyup="calculate()"></td>
+		 </td>
+         <td class="align-middle"><input  class="form-control form-control-sm text-right"type="text" readonly id="Tot3" onkeyup="calculate()"></td>
         </tr>
         <tr>
           <td class="align-middle">ചെലവു കഴിക്കുന്നില്ലെങ്കില്‍</td>
           <td class="align-middle"><input tabindex="8" placeholder="Qty" class="form-control form-control-sm text-right" type="text" id="qty1"></td>
           <td class="align-middle"><input tabindex="9" placeholder="Rs."  class="form-control form-control-sm text-right" type="text" id="d1" onkeyup="calculate()"></td>
           <td class="align-middle">
-            <div class="input-group input-group-sm">
+			<div class="input-group input-group-sm">
               <input  class="form-control form-control-sm text-right"type="text"  value="5" id="d2" onkeyup="calculate()" readonly>
               <div class="input-group-append">
                 <span class="input-group-text" id="basic-addon2">%</span>
               </div>
             </div>
-          </td>
-          <td class="align-middle"><input  class="form-control form-control-sm text-right"type="text" readonly id="Tot4" onkeyup="calculate()"></td>
+		 </td>
+         <td class="align-middle"><input  class="form-control form-control-sm text-right"type="text" readonly id="Tot4" onkeyup="calculate()"></td>
         </tr>
         <tr>
           <td class="align-middle" rowspan="3">റബര്‍, കശുവണ്ടി, കുരുമുളക് , തേയില തുടങ്ങിയവ</td>
@@ -249,42 +252,42 @@
           <td class="align-middle"><input tabindex="10" placeholder="Qty" class="form-control form-control-sm text-right" type="text" id="qty1"></td>
           <td class="align-middle"><input tabindex="12" placeholder="Rs."  class="form-control form-control-sm text-right" type="text" id="e1" onkeyup="calculate()"></td>
           <td class="align-middle">
-            <div class="input-group input-group-sm">
+			<div class="input-group input-group-sm">
               <input  class="form-control form-control-sm text-right"type="text"  value="10" id="e2" onkeyup="calculate()" readonly>
               <div class="input-group-append">
                 <span class="input-group-text" id="basic-addon2">%</span>
               </div>
             </div>
-          </td>
-          <td class="align-middle"><input  class="form-control form-control-sm text-right"type="text" readonly id="Tot5" onkeyup="calculate()"></td>
+		 </td>
+         <td class="align-middle"><input  class="form-control form-control-sm text-right"type="text" readonly id="Tot5" onkeyup="calculate()"></td>
         </tr>
         <tr>
           <td class="align-middle">ചെലവു കഴിക്കുന്നില്ലെങ്കില്‍</td>
           <td class="align-middle"><input tabindex="13" placeholder="Qty" class="form-control form-control-sm text-right" type="text" id="qty1"></td>
           <td class="align-middle"><input tabindex="14" placeholder="Rs."  class="form-control form-control-sm text-right" type="text" id="f1" onkeyup="calculate()"></td>
           <td class="align-middle">
-            <div class="input-group input-group-sm">
+			<div class="input-group input-group-sm">
               <input  class="form-control form-control-sm text-right"type="text"  value="5" id="f2" onkeyup="calculate()" readonly>
               <div class="input-group-append">
                 <span class="input-group-text" id="basic-addon2">%</span>
               </div>
             </div>
-          </td>
-          <td class="align-middle"><input  class="form-control form-control-sm text-right"type="text" readonly id="Tot6" onkeyup="calculate()"></td>
+		 </td>
+         <td class="align-middle"><input  class="form-control form-control-sm text-right"type="text" readonly id="Tot6" onkeyup="calculate()"></td>
         </tr>
         <tr>
-          <td class="align-middle">നാണ്യവിളയായി പരിഗണിക്കുകയാണെങ്കില്‍ 2 മ്മ ശതമാനം - പ്രബലം ആദ്യത്തേതാണ്‌</td>
+          <td class="align-middle">നാണ്യവിളയായി പരിഗണിക്കുകയാണെങ്കില്‍ 2.5 ശതമാനം - പ്രബലം ആദ്യത്തേതാണ്‌</td>
           <td class="align-middle"><input tabindex="15" placeholder="Qty" class="form-control form-control-sm text-right" type="text" id="qty1"></td>
           <td class="align-middle"><input tabindex="16" placeholder="Rs."  class="form-control form-control-sm text-right" type="text" id="g1" onkeyup="calculate()"></td>
           <td class="align-middle">
-            <div class="input-group input-group-sm">
-              <input  class="form-control form-control-sm text-right"type="text"  value="" id="g2" onkeyup="calculate()" readonly>
+			<div class="input-group input-group-sm">
+              <input  class="form-control form-control-sm text-right"type="text"  value="2.5" id="g2" onkeyup="calculate()" readonly>
               <div class="input-group-append">
                 <span class="input-group-text" id="basic-addon2">%</span>
               </div>
             </div>
-          </td>
-          <td class="align-middle"><input  class="form-control form-control-sm text-right"type="text" readonly id="Tot7" onkeyup="calculate()"></td>
+		 </td>
+         <td class="align-middle"><input  class="form-control form-control-sm text-right"type="text" readonly id="Tot7" onkeyup="calculate()"></td>
         </tr>
         <tr>
           <td class="align-middle">കപ്പ, കിഴങ്ങ്, ചേന, ചേമ്പ്, വാഴ, പയര്‍, വെള്ളരി, മാങ്ങ, ചക്ക, പപ്പായ തുടങ്ങിയവ</td>
@@ -292,14 +295,14 @@
           <td class="align-middle"><input tabindex="17" placeholder="Qty" class="form-control form-control-sm text-right" type="text" id="qty1"></td>
           <td class="align-middle"><input tabindex="18" placeholder="Rs."  class="form-control form-control-sm text-right" type="text" id="h1" onkeyup="calculate()"></td>
           <td class="align-middle">
-            <div class="input-group input-group-sm">
+			<div class="input-group input-group-sm">
               <input  class="form-control form-control-sm text-right"type="text"  value="10" id="h2" onkeyup="calculate()" readonly>
               <div class="input-group-append">
                 <span class="input-group-text" id="basic-addon2">%</span>
               </div>
             </div>
-          </td>
-          <td class="align-middle"><input  class="form-control form-control-sm text-right"type="text" readonly id="Tot8" onkeyup="calculate()"></td>
+		 </td>
+         <td class="align-middle"><input  class="form-control form-control-sm text-right"type="text" readonly id="Tot8" onkeyup="calculate()"></td>
         </tr>
         <tr>
           <td class="align-middle">വാടക കെട്ടിടം, വ്യവസായം, ഗോട്ട് ഫാം, പൗള്‍ട്രി ഫാം, ട്രാവല്‍ ഏജന്‍സി, ബസ്സ്, ജീപ്പ്, ഓട്ടോറിക്ഷ, ആശുപത്രി, സ്‌കൂള്‍ തുടങ്ങിയവ</td>
@@ -307,14 +310,14 @@
           <td class="align-middle"><input tabindex="19" placeholder="Qty" class="form-control form-control-sm text-right" type="text" id="qty1"></td>
           <td class="align-middle"><input tabindex="20" placeholder="Rs."  class="form-control form-control-sm text-right" type="text" id="i1" onkeyup="calculate()"></td>
           <td class="align-middle">
-            <div class="input-group input-group-sm">
+			<div class="input-group input-group-sm">
               <input  class="form-control form-control-sm text-right"type="text"  value="10" id="i2" onkeyup="calculate()" readonly>
               <div class="input-group-append">
                 <span class="input-group-text" id="basic-addon2">%</span>
               </div>
             </div>
-          </td>
-          <td class="align-middle"><input  class="form-control form-control-sm text-right"type="text" readonly id="Tot9" onkeyup="calculate()"></td>
+		 </td>
+         <td class="align-middle"><input  class="form-control form-control-sm text-right"type="text" readonly id="Tot9" onkeyup="calculate()"></td>
         </tr>
         <tr>
           <td class="align-middle">മൊത്തം കാര്‍ഷിക വിളകള്‍</td>
@@ -322,14 +325,14 @@
           <td class="align-middle"><input tabindex="21" placeholder="Qty" class="form-control form-control-sm text-right" type="text" id="qty1"></td>
           <td class="align-middle"><input tabindex="22" placeholder="Rs."  class="form-control form-control-sm text-right" type="text" id="j1" onkeyup="calculate()"></td>
           <td class="align-middle">
-            <div class="input-group input-group-sm">
+			<div class="input-group input-group-sm">
               <input  class="form-control form-control-sm text-right"type="text"  value="10" id="j2" onkeyup="calculate()" readonly>
               <div class="input-group-append">
                 <span class="input-group-text" id="basic-addon2">%</span>
               </div>
             </div>
-          </td>
-          <td class="align-middle"><input  class="form-control form-control-sm text-right"type="text" readonly id="Tot10" onkeyup="calculate()"></td>
+		 </td>
+         <td class="align-middle"><input  class="form-control form-control-sm text-right"type="text" readonly id="Tot10" onkeyup="calculate()"></td>
         </tr>
         <tr>
           <td class="align-middle">കച്ചവടം</td>
@@ -337,14 +340,14 @@
           <td class="align-middle"><input tabindex="23" placeholder="Qty" class="form-control form-control-sm text-right" type="text" id="qty1"></td>
           <td class="align-middle"><input tabindex="24" placeholder="Rs."  class="form-control form-control-sm text-right" type="text" id="k1" onkeyup="calculate()"></td>
           <td class="align-middle">
-            <div class="input-group input-group-sm">
+			<div class="input-group input-group-sm">
               <input  class="form-control form-control-sm text-right"type="text"  value="2.5" id="k2" onkeyup="calculate()" readonly>
               <div class="input-group-append">
                 <span class="input-group-text" id="basic-addon2">%</span>
               </div>
             </div>
-          </td>
-          <td class="align-middle"><input  class="form-control form-control-sm text-right"type="text" readonly id="Tot11" onkeyup="calculate()"></td>
+		 </td>
+         <td class="align-middle"><input  class="form-control form-control-sm text-right"type="text" readonly id="Tot11" onkeyup="calculate()"></td>
         </tr>
         <tr>
           <td class="align-middle">ശമ്പളം, കൂലി, ഡോക്ടര്‍മാരുടെ ഫീസ്, എഞ്ചിനിയര്‍മാരുടെ സൂപ്പര്‍വിഷന്‍ ഫീ, കണ്‍സള്‍ട്ടന്‍സി ഫീ, കമ്മീഷന്‍ തുടങ്ങിയവ</td>
@@ -352,14 +355,14 @@
           <td class="align-middle"><input tabindex="25" placeholder="Qty" class="form-control form-control-sm text-right" type="text" id="qty1"></td>
           <td class="align-middle"><input tabindex="26"  placeholder="Rs."  class="form-control form-control-sm text-right" type="text" id="l1" onkeyup="calculate()"></td>
           <td class="align-middle">
-            <div class="input-group input-group-sm">
+			<div class="input-group input-group-sm">
               <input  class="form-control form-control-sm text-right"type="text"  value="2.5" id="l2" onkeyup="calculate()" readonly>
               <div class="input-group-append">
                 <span class="input-group-text" id="basic-addon2">%</span>
               </div>
             </div>
-          </td>
-          <td class="align-middle"><input  class="form-control form-control-sm text-right"type="text" readonly id="Tot12" onkeyup="calculate()"></td>
+		 </td>
+         <td class="align-middle"><input  class="form-control form-control-sm text-right"type="text" readonly id="Tot12" onkeyup="calculate()"></td>
         </tr>
         <tr>
           <td class="align-middle" rowspan="3">മത്സ്യം</td>
@@ -367,42 +370,42 @@
           <td class="align-middle"><input tabindex="27" placeholder="Qty" class="form-control form-control-sm text-right" type="text" id="qty1"></td>
           <td class="align-middle"><input tabindex="28"  placeholder="Rs."  class="form-control form-control-sm text-right" type="text" id="m1" onkeyup="calculate()"></td>
           <td class="align-middle">
-            <div class="input-group input-group-sm">
+			<div class="input-group input-group-sm">
               <input  class="form-control form-control-sm text-right"type="text"  value="2.5" id="m2" onkeyup="calculate()" readonly>
               <div class="input-group-append">
                 <span class="input-group-text" id="basic-addon2">%</span>
               </div>
             </div>
-          </td>
-          <td class="align-middle"><input  class="form-control form-control-sm text-right"type="text" readonly id="Tot13" onkeyup="calculate()"></td>
+		 </td>
+         <td class="align-middle"><input  class="form-control form-control-sm text-right"type="text" readonly id="Tot13" onkeyup="calculate()"></td>
         </tr>
         <tr>
           <td class="align-middle">മത്സ്യ ബന്ധനം നടത്തുന്നവര്‍ ലഭിച്ച വരുമാനത്തിന്റെ ചെലവ് കഴിച്ച്</td>
           <td class="align-middle"><input tabindex="29" placeholder="Qty" class="form-control form-control-sm text-right" type="text" id="qty1"></td>
           <td class="align-middle"><input tabindex="30"  placeholder="Rs."  class="form-control form-control-sm text-right" type="text" id="n1" onkeyup="calculate()"></td>
           <td class="align-middle">
-            <div class="input-group input-group-sm">
+			<div class="input-group input-group-sm">
               <input  class="form-control form-control-sm text-right"type="text"  value="10" id="n2" onkeyup="calculate()" readonly>
               <div class="input-group-append">
                 <span class="input-group-text" id="basic-addon2">%</span>
               </div>
             </div>
-          </td>
-          <td class="align-middle"><input  class="form-control form-control-sm text-right"type="text" readonly id="Tot14" onkeyup="calculate()"></td>
+		 </td>
+         <td class="align-middle"><input  class="form-control form-control-sm text-right"type="text" readonly id="Tot14" onkeyup="calculate()"></td>
         </tr>
         <tr>
           <td class="align-middle">ചെലവ് കഴിക്കാതെ</td>
           <td class="align-middle"><input tabindex="31" placeholder="Qty" class="form-control form-control-sm text-right" type="text" id="qty1"></td>
           <td class="align-middle"><input tabindex="32" placeholder="Rs."  class="form-control form-control-sm text-right" type="text" id="o1" onkeyup="calculate()"></td>
           <td class="align-middle">
-            <div class="input-group input-group-sm">
+			<div class="input-group input-group-sm">
               <input  class="form-control form-control-sm text-right"type="text"  value="5" id="o2" onkeyup="calculate()" readonly>
               <div class="input-group-append">
                 <span class="input-group-text" id="basic-addon2">%</span>
               </div>
             </div>
-          </td>
-          <td class="align-middle"><input  class="form-control form-control-sm text-right"type="text" readonly id="Tot15" onkeyup="calculate()"></td>
+		 </td>
+         <td class="align-middle"><input  class="form-control form-control-sm text-right"type="text" readonly id="Tot15" onkeyup="calculate()"></td>
         </tr>
         <tr>
           <td class="align-middle">ഷെയര്‍ (കച്ചവടം)</td>
@@ -410,14 +413,14 @@
           <td class="align-middle"><input tabindex="33" placeholder="Qty" class="form-control form-control-sm text-right" type="text" id="qty1"></td>
           <td class="align-middle"><input tabindex="34" placeholder="Rs."  class="form-control form-control-sm text-right" type="text" id="p1" onkeyup="calculate()"></td>
           <td class="align-middle">
-            <div class="input-group input-group-sm">
+			<div class="input-group input-group-sm">
               <input  class="form-control form-control-sm text-right"type="text"  value="2.5" id="p2" onkeyup="calculate()" readonly>
               <div class="input-group-append">
                 <span class="input-group-text" id="basic-addon2">%</span>
               </div>
             </div>
-          </td>
-          <td class="align-middle"><input  class="form-control form-control-sm text-right"type="text" readonly id="Tot16" onkeyup="calculate()"></td>
+		 </td>
+         <td class="align-middle"><input  class="form-control form-control-sm text-right"type="text" readonly id="Tot16" onkeyup="calculate()"></td>
         </tr>
         <tr>
           <td class="align-middle">ഷെയര്‍ (വ്യവസായം, സ്‌കൂള്‍ വാടകകെട്ടിടം, ആശുപത്രി തുടങ്ങിയവയില്‍)</td>
@@ -425,14 +428,14 @@
           <td class="align-middle"><input tabindex="35" placeholder="Qty" class="form-control form-control-sm text-right" type="text" id="qty1"></td>
           <td class="align-middle"><input tabindex="36"  placeholder="Rs."  class="form-control form-control-sm text-right" type="text" id="q1" onkeyup="calculate()"></td>
           <td class="align-middle">
-            <div class="input-group input-group-sm">
+			<div class="input-group input-group-sm">
               <input  class="form-control form-control-sm text-right"type="text"  value="10" id="q2" onkeyup="calculate()" readonly>
               <div class="input-group-append">
                 <span class="input-group-text" id="basic-addon2">%</span>
               </div>
             </div>
-          </td>
-          <td class="align-middle"><input  class="form-control form-control-sm text-right"type="text" readonly id="Tot17" onkeyup="calculate()"></td>
+		 </td>
+         <td class="align-middle"><input  class="form-control form-control-sm text-right"type="text" readonly id="Tot17" onkeyup="calculate()"></td>
         </tr>
         <tr>
           <td class="align-middle">റിയല്‍ എസ്റ്റേറ്റ്</td>
@@ -440,14 +443,14 @@
           <td class="align-middle"><input tabindex="37" placeholder="Qty" class="form-control form-control-sm text-right" type="text" id="qty1"></td>
           <td class="align-middle"><input tabindex="38" placeholder="Rs."  class="form-control form-control-sm text-right" type="text" id="r1" onkeyup="calculate()"></td>
           <td class="align-middle">
-            <div class="input-group input-group-sm">
+			<div class="input-group input-group-sm">
               <input  class="form-control form-control-sm text-right"type="text"  value="10" id="r2" onkeyup="calculate()" readonly>
               <div class="input-group-append">
                 <span class="input-group-text" id="basic-addon2">%</span>
               </div>
             </div>
-          </td>
-          <td class="align-middle"><input  class="form-control form-control-sm text-right"type="text" readonly id="Tot18" onkeyup="calculate()"></td>
+		 </td>
+         <td class="align-middle"><input  class="form-control form-control-sm text-right"type="text" readonly id="Tot18" onkeyup="calculate()"></td>
         </tr>
         <tr>
           <td class="align-middle">നിധി, കരിങ്കല്ല്, വെട്ടുകല്ല്, മണല്‍ തുടങ്ങിയവ</td>
@@ -455,14 +458,14 @@
           <td class="align-middle"><input tabindex="39" placeholder="Qty" class="form-control form-control-sm text-right" type="text" id="qty1"></td>
           <td class="align-middle"><input tabindex="40" placeholder="Rs."  class="form-control form-control-sm text-right" type="text" id="s1" onkeyup="calculate()"></td>
           <td class="align-middle">
-            <div class="input-group input-group-sm">
+			<div class="input-group input-group-sm">
               <input  class="form-control form-control-sm text-right"type="text"  value="10" id="s2" onkeyup="calculate()" readonly>
               <div class="input-group-append">
                 <span class="input-group-text" id="basic-addon2">%</span>
               </div>
             </div>
-          </td>
-          <td class="align-middle"><input  class="form-control form-control-sm text-right"type="text" readonly id="Tot19" onkeyup="calculate()"></td>
+		 </td>
+         <td class="align-middle"><input  class="form-control form-control-sm text-right"type="text" readonly id="Tot19" onkeyup="calculate()"></td>
         </tr>
         <tr>
           <td class="align-middle">മൊത്തം വരവ്‌</td>
@@ -470,32 +473,42 @@
           <td class="align-middle"><input tabindex="41" placeholder="Qty" class="form-control form-control-sm text-right" type="text" id="qty1"></td>
           <td class="align-middle"><input tabindex="42"  placeholder="Rs."  class="form-control form-control-sm text-right" type="text" id="t1" onkeyup="calculate()"></td>
           <td class="align-middle">
-            <div class="input-group input-group-sm">
+			<div class="input-group input-group-sm">
               <input  class="form-control form-control-sm text-right"type="text"  value="2.5" id="t2" onkeyup="calculate()" readonly>
               <div class="input-group-append">
                 <span class="input-group-text" id="basic-addon2">%</span>
               </div>
             </div>
-          </td>
-          <td class="align-middle"><input  class="form-control form-control-sm text-right"type="text" readonly id="Tot20" onkeyup="calculate()"></td>
+		 </td>
+         <td class="align-middle"><input  class="form-control form-control-sm text-right"type="text" readonly id="Tot20" onkeyup="calculate()"></td>
         </tr>
+        
+
+
         <tr>
-          <td>          <button tabindex="45" class="d-print-none btn btn-info" onclick="window.print();"> Print </button></td>
+<td>          <button tabindex="45" class="d-print-none btn btn-info" onclick="window.print();"> Print </button></td>
           <td colspan="4" class="text-right">
+          
             <button tabindex="43" class="d-print-none btn btn-primary" onclick="getPrice()">Get Sub Total </button>
             <button tabindex="44" class="d-print-none btn btn-success" onclick="getFullPrice()"> Get Full Total </button>
           </td>
+
           <td class="align-middle"><input  class="form-control form-control-sm text-right"type="text" id="result" onkeyup="calculate()"  readonly></td>
         </tr>
         <tfoot>
+
         </tfoot>
       </table>
+
+      
+      
+      
       <br>
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
-  </body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+</body>
 </html>
