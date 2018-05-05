@@ -30,6 +30,9 @@
 		  background: #fff;
 		}
 	  @media print {
+	   body {
+		font-size:10px;
+	   }
 	  button {
 		display: none !important;
 	  }
@@ -187,10 +190,9 @@
       <a class="btn btn-outline-primary" href="#">Sign up</a>
     </div>
     <div class="container my-3 p-3 bg-white rounded box-shadow">
-    <h2 class="text-center pt-4">Zakkath Calculator</h2>
-	<p class="text-center pb-4">Use Tab Key to Naavigate from Text Fields Easily</p>
 	<div class="">
-	
+		<h2 class="d-print-none text-center pt-4">Zakkath Calculator</h2>
+		<p class="d-print-none text-center pb-4">Use Tab Key to Naavigate from Text Fields Easily</p>
 	</div>
       <table class="table-sm table table-bordered table-striped table-hover">
         <tr class="text-center" style="font-weight:bold;">
@@ -519,7 +521,7 @@
 	<footer class="blog-footer">
       <p><a href="https://www.zaliyo.com/sites/zakkath-calculator/">Zakkath Calculator</a> by <a href="https://www.zaliyo.com/">Team Zaliyo</a>.</p>
       <p>
-        <a href="#">Back to top</a>
+        <a class="d-print-none" href="#">Back to top</a>
       </p>
     </footer>
     <!-- Optional JavaScript -->
