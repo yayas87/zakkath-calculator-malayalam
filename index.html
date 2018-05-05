@@ -1,226 +1,1756 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ml">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=5">
+    <meta name="description" content="Zakkath Calculator in Malayalam - Calculate your Zakat obligations according to Islamic principles">
+    <meta name="keywords" content="zakkath, zakat, calculator, malayalam, സകാത്ത്, islamic finance">
+    <meta name="author" content="Team Zaliyo">
+
+    <!-- Preconnect to external domains for better performance -->
+    <link rel="preconnect" href="https://stackpath.bootstrapcdn.com">
+    <link rel="preconnect" href="https://code.jquery.com">
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-    <title>Zakkath Calculator - Malayalam</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+
+    <title>Zakkath Calculator - സകാത്ത് കാൽക്കുലേറ്റർ</title>
+
     <style>
-		.blog-footer {
-		  padding: 2.5rem 0;
-		  color: #999;
-		  text-align: center;
-		  background-color: #f9f9f9;
-		  border-top: .05rem solid #e5e5e5;
-		}
-		p {
-			font-size: 9.5px;
-			font-weight:bold;
-			margin: 0;
-		}
-		body {
-		  font-size: 11px;
-		  background: #F5F5F5;
-		  font-weight: bold;
-		}
-	  .container {
-		  background: #fff;
-		}
-	  @media print {
-	  button {
-		display: none !important;
-	  }
-	  .input-group-text, input,
-	  textarea {
-		border: none !important;
-		box-shadow: none !important;
-		outline: none !important;
-	  }
-	}
+      :root {
+        --bg-primary: #F5F5F5;
+        --bg-secondary: #fff;
+        --text-primary: #212529;
+        --text-secondary: #6c757d;
+        --border-color: #dee2e6;
+        --input-bg: #fff;
+        --table-stripe: rgba(0,0,0,.05);
+        --shadow: rgba(0,0,0,0.1);
+        --base-font-size: 11px;
+        --highlight-yellow: #fff3cd;
+        --highlight-blue: #d1ecf1;
+        --highlight-green: #d4edda;
+        --success-color: #28a745;
+        --info-color: #17a2b8;
+        --primary-color: #007bff;
+        --tooltip-bg: #333;
+        --thead-bg: #f8f9fa;
+      }
+
+      [data-theme="dark"] {
+        --bg-primary: #1a1a1a;
+        --bg-secondary: #2d2d2d;
+        --text-primary: #e0e0e0;
+        --text-secondary: #a0a0a0;
+        --border-color: #444;
+        --input-bg: #3a3a3a;
+        --table-stripe: rgba(255,255,255,.05);
+        --shadow: rgba(0,0,0,0.5);
+        --highlight-yellow: #4a4420;
+        --highlight-blue: #1a3a44;
+        --highlight-green: #1e3a2a;
+        --success-color: #4caf50;
+        --info-color: #26c6da;
+        --primary-color: #42a5f5;
+        --tooltip-bg: #1a1a1a;
+        --thead-bg: #2a2a2a;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-size: var(--base-font-size);
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        font-weight: bold;
+        margin: 0;
+        padding: 0;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      body.font-small { --base-font-size: 9px; }
+      body.font-medium { --base-font-size: 11px; }
+      body.font-large { --base-font-size: 13px; }
+      body.font-xlarge { --base-font-size: 15px; }
+
+      .container {
+        background: var(--bg-secondary);
+        max-width: 1200px;
+        transition: background-color 0.3s ease;
+      }
+
+      .blog-footer {
+        padding: 2.5rem 0;
+        color: var(--text-secondary);
+        text-align: center;
+        background-color: var(--bg-primary);
+        border-top: 0.05rem solid var(--border-color);
+        margin-top: 2rem;
+      }
+
+      .header-nav {
+        background: var(--bg-secondary) !important;
+        transition: background-color 0.3s ease;
+      }
+
+      .table {
+        color: var(--text-primary);
+      }
+
+      .table thead th {
+        background-color: var(--thead-bg);
+        color: var(--text-primary);
+        border-color: var(--border-color);
+      }
+
+      .table td,
+      .table th {
+        border-color: var(--border-color);
+      }
+
+      .table-bordered {
+        border-color: var(--border-color);
+      }
+
+      .table-striped tbody tr:nth-of-type(odd) {
+        background-color: var(--table-stripe);
+      }
+
+      .form-control {
+        background-color: var(--input-bg);
+        color: var(--text-primary);
+        border-color: var(--border-color);
+      }
+
+      .form-control:focus {
+        background-color: var(--input-bg);
+        color: var(--text-primary);
+        border-color: var(--primary-color);
+      }
+
+      .form-control[readonly] {
+        background-color: var(--input-bg);
+        color: var(--text-primary);
+        opacity: 0.9;
+        font-size: 9.5px;
+        font-weight: bold;
+        margin: 0;
+      }
+
+      .input-group-text {
+        background-color: var(--input-bg);
+        color: var(--text-primary);
+        border-color: var(--border-color);
+        transition: all 0.3s ease;
+      }
+
+      .header-nav {
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+
+      input[type="text"] {
+        transition: all 0.3s ease;
+        background-color: var(--input-bg);
+        color: var(--text-primary);
+      }
+
+      input[type="text"]:focus {
+        background-color: var(--input-bg);
+        color: var(--text-primary);
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 0.2rem rgba(66, 165, 245, 0.25);
+        transform: scale(1.02);
+      }
+
+      input[type="text"].has-value {
+        border-color: var(--success-color);
+        background-color: var(--input-bg);
+      }
+
+      tr.active-row {
+        background-color: var(--table-stripe) !important;
+
+      .btn {
+        transition: all 0.2s ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      }
+
+      .control-panel {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: var(--bg-secondary);
+        padding: 10px;
+        box-shadow: 0 2px 4px var(--shadow);
+        border-radius: 5px;
+        margin-bottom: 15px;
+      }
+
+      .theme-toggle, .font-control {
+        cursor: pointer;
+        padding: 5px 10px;
+        border-radius: 5px;
+        background: var(--bg-primary);
+        border: 1px solid var(--border-color);
+        color: var(--text-primary);
+        margin: 0 5px;
+        transition: all 0.3s ease;
+      }
+
+      .btn {
+        transition: all 0.3s ease;
+      }
+
+      .theme-toggle:hover, .font-control:hover {
+        transform: scale(1.05);
+      }
+
+      .progress-bar-container {
+        width: 100%;
+        height: 8px;
+        background: var(--border-color);
+        border-radius: 10px;
+        overflow: hidden;
+        margin: 10px 0;
+      }
+
+      .progress-bar-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #28a745, #20c997);
+        transition: width 0.5s ease;
+        border-radius: 10px;
+      }
+
+      .progress-text {
+        font-size: 10px;
+        color: var(--text-secondary);
+        margin-top: 5px;
+      }
+
+      .tooltip-icon {
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        background: var(--info-color);
+        color: white;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 18px;
+        font-size: 12px;
+        cursor: help;
+        margin-left: 5px;
+      }
+
+      .tooltip-content {
+        display: none;
+        position: absolute;
+        background: var(--tooltip-bg);
+        color: var(--text-primary);
+        padding: 10px;
+        border-radius: 5px;
+        font-size: 10px;
+        max-width: 300px;
+        z-index: 1000;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      }
+
+      .tooltip-icon:hover + .tooltip-content {
+        display: block;
+      }
+
+      .animated-number {
+        font-weight: bold;
+        color: #28a745;
+        transition: all 0.3s ease;
+      }
+
+      .modal {
+        display: none !important;
+        position: fixed !important;
+        z-index: 2000 !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        background: rgba(0,0,0,0.5) !important;
+        overflow: auto !important;
+        -webkit-overflow-scrolling: touch;
+        padding: 0 !important;
+      }
+
+      .modal[style*="display: block"] {
+        display: block !important;
+      }
+
+      .modal-content {
+        background: var(--bg-secondary) !important;
+        margin: 5% auto !important;
+        padding: 20px !important;
+        border-radius: 10px !important;
+        width: 90% !important;
+        max-width: 600px !important;
+        max-height: 85vh !important;
+        overflow-y: auto !important;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.3) !important;
+        position: relative !important;
+        color: var(--text-primary) !important;
+        display: block !important;
+      }
+
+      .close-modal {
+        float: right !important;
+        font-size: 28px !important;
+        font-weight: bold !important;
+        cursor: pointer !important;
+        color: var(--text-primary) !important;
+        line-height: 1 !important;
+        padding: 0 !important;
+        background: transparent !important;
+        border: none !important;
+      }
+
+      .close-modal:hover {
+        color: #dc3545 !important;
+      }
+
+      .template-card {
+        border: 1px solid var(--border-color) !important;
+        padding: 15px !important;
+        margin: 10px 0 !important;
+        border-radius: 5px !important;
+        cursor: pointer !important;
+        transition: all 0.3s ease !important;
+        background: var(--bg-primary) !important;
+      }
+
+      .template-card:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 4px 8px var(--shadow) !important;
+        border-color: #007bff !important;
+      }
+
+      .template-card h5 {
+        margin-bottom: 5px !important;
+        color: var(--text-primary) !important;
+      }
+
+      .template-card p {
+        margin-bottom: 0 !important;
+        color: var(--text-secondary) !important;
+      }
+
+      .debt-section {
+        background-color: #fff3cd !important;
+        background-image: linear-gradient(135deg, #fff3cd 0%, #ffe69c 100%) !important;
+        padding: 20px !important;
+        border-radius: 8px !important;
+        margin: 20px 0 !important;
+        border: 3px solid #ffc107 !important;
+        box-shadow: 0 4px 12px rgba(255, 193, 7, 0.4) !important;
+        position: relative;
+      }
+
+      .debt-section h6 {
+        color: #856404 !important;
+        margin-bottom: 10px !important;
+      }
+
+      .debt-section label {
+        color: #856404 !important;
+        font-weight: bold !important;
+      }
+
+      .debt-section p {
+        color: #856404 !important;
+      }
+
+      [data-theme="dark"] .debt-section {
+        background-color: rgba(255, 193, 7, 0.25) !important;
+        background-image: linear-gradient(135deg, rgba(255, 193, 7, 0.3) 0%, rgba(255, 193, 7, 0.15) 100%) !important;
+        box-shadow: 0 4px 12px rgba(255, 193, 7, 0.5) !important;
+        border-color: #ffca2c !important;
+      }
+
+      [data-theme="dark"] .debt-section h6,
+      [data-theme="dark"] .debt-section label,
+      [data-theme="dark"] .debt-section p {
+        color: #ffc107 !important;
+      }
+
+      /* Wizard Styles */
+      .wizard-modal .modal-content {
+        max-width: 800px !important;
+        padding: 30px !important;
+        max-height: 90vh !important;
+      }
+
+      .wizard-modal h3 {
+        color: var(--text-primary) !important;
+      }
+
+      .wizard-modal p {
+        color: var(--text-secondary) !important;
+      }
+
+      .wizard-stepper {
+        display: flex !important;
+        justify-content: space-between !important;
+        margin-bottom: 30px !important;
+        position: relative !important;
+      }
+
+      .wizard-stepper::before {
+        content: '' !important;
+        position: absolute !important;
+        top: 20px !important;
+        left: 0 !important;
+        right: 0 !important;
+        height: 2px !important;
+        background: var(--border-color) !important;
+        z-index: 0 !important;
+      }
+
+      .wizard-step {
+        flex: 1 !important;
+        text-align: center !important;
+        position: relative !important;
+        z-index: 1 !important;
+      }
+
+      .wizard-step-circle {
+        width: 40px !important;
+        height: 40px !important;
+        border-radius: 50% !important;
+        background: var(--bg-primary) !important;
+        border: 2px solid var(--border-color) !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-weight: bold !important;
+        margin-bottom: 5px !important;
+        transition: all 0.3s ease;
+      }
+
+      .wizard-step.active .wizard-step-circle {
+        background: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+        transform: scale(1.2);
+      }
+
+      .wizard-step.completed .wizard-step-circle {
+        background: var(--success-color);
+        color: white;
+        border-color: var(--success-color);
+      }
+
+      .wizard-step-label {
+        font-size: 9px;
+        color: var(--text-secondary);
+        display: block;
+      }
+
+      .wizard-step.active .wizard-step-label {
+        color: #007bff;
+        font-weight: bold;
+      }
+
+      .wizard-content {
+        min-height: 400px !important;
+        padding: 20px !important;
+        background: var(--bg-primary) !important;
+        border-radius: 8px !important;
+        margin-bottom: 20px !important;
+      }
+
+      .wizard-question {
+        display: none !important;
+        animation: fadeIn 0.3s ease !important;
+      }
+
+      .wizard-question.active {
+        display: block !important;
+      }
+
+      .wizard-question h4 {
+        color: var(--text-primary) !important;
+        margin-bottom: 15px !important;
+        font-size: 16px !important;
+      }
+
+      .wizard-question-desc {
+        background: var(--table-stripe) !important;
+        padding: 12px !important;
+        border-radius: 5px !important;
+        margin-bottom: 20px !important;
+        font-size: 11px !important;
+        border-left: 4px solid var(--primary-color) !important;
+        color: var(--text-primary) !important;
+      }
+
+      .wizard-input-group {
+        margin-bottom: 20px !important;
+      }
+
+      .wizard-input-group label {
+        display: block !important;
+        margin-bottom: 8px !important;
+        font-weight: bold !important;
+        font-size: 11px !important;
+        color: var(--text-primary) !important;
+      }
+
+      .wizard-input-group input {
+        width: 100% !important;
+        padding: 10px !important;
+        border: 2px solid var(--border-color) !important;
+        border-radius: 5px !important;
+        font-size: 14px !important;
+        background: var(--input-bg) !important;
+        color: var(--text-primary) !important;
+        transition: border-color 0.3s ease !important;
+      }
+
+      .wizard-input-group input:focus {
+        border-color: #007bff !important;
+        outline: none !important;
+      }
+
+      .wizard-navigation {
+        display: flex !important;
+        justify-content: space-between !important;
+        gap: 10px !important;
+        margin-top: 20px !important;
+      }
+
+      .wizard-btn {
+        flex: 1 !important;
+        padding: 12px 20px !important;
+        border: none !important;
+        border-radius: 5px !important;
+        font-weight: bold !important;
+        cursor: pointer !important;
+        transition: all 0.3s ease !important;
+        font-size: 14px !important;
+      }
+
+      .wizard-btn-prev {
+        background: var(--bg-primary) !important;
+        color: var(--text-primary) !important;
+        border: 2px solid var(--border-color) !important;
+      }
+
+      .wizard-btn-next {
+        background: var(--primary-color) !important;
+        color: white !important;
+      }
+
+      .wizard-btn-finish {
+        background: var(--success-color) !important;
+        color: white !important;
+      }
+
+      .wizard-btn:hover:not(:disabled) {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
+      }
+
+      .wizard-btn:disabled {
+        opacity: 0.5 !important;
+        cursor: not-allowed !important;
+      }
+
+      .wizard-skip {
+        text-align: center !important;
+        margin-top: 10px !important;
+      }
+
+      .wizard-skip a {
+        color: var(--text-secondary) !important;
+        font-size: 10px !important;
+        text-decoration: underline !important;
+        cursor: pointer !important;
+      }
+
+      .wizard-category-icon {
+        font-size: 48px !important;
+        text-align: center !important;
+        margin-bottom: 15px !important;
+        color: var(--primary-color) !important;
+      }
+
+      [data-theme="dark"] .wizard-step.active .wizard-step-label {
+        color: #4da6ff !important;
+      }
+
+      [data-theme="dark"] .wizard-input-group label {
+        color: var(--text-primary) !important;
+      }
+
+      [data-theme="dark"] .wizard-modal h3 {
+        color: var(--text-primary);
+      }
+
+      [data-theme="dark"] .wizard-modal p {
+        color: var(--text-secondary);
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateX(20px); }
+        to { opacity: 1; transform: translateX(0); }
+      }
+
+      .gold-price-banner {
+        background: linear-gradient(135deg, #ffd700, #ffed4e);
+        color: #333;
+        padding: 10px;
+        border-radius: 5px;
+        margin: 10px 0;
+        text-align: center;
+        font-weight: bold;
+      }
+
+      [data-theme="dark"] .gold-price-banner {
+        background: linear-gradient(135deg, #b8860b, #daa520);
+        color: #fff;
+      }
+
+      .highlight-yellow {
+        background: var(--highlight-yellow) !important;
+      }
+
+      .highlight-blue {
+        background: var(--highlight-blue) !important;
+      }
+
+      .highlight-green {
+        background: var(--highlight-green) !important;
+      }
+
+      .footer-total-row td {
+        color: var(--success-color) !important;
+      }
+
+      tfoot {
+        background-color: var(--thead-bg) !important;
+      }
+
+      .table-footer {
+        background-color: var(--thead-bg);
+        font-weight: bold;
+      }
+
+      .footer-border-top {
+        border-top: 3px solid var(--border-color) !important;
+      }
+
+      .container {
+        background-color: var(--bg-secondary) !important;
+      }
+
+      .modal-content {
+        background-color: var(--bg-secondary) !important;
+        color: var(--text-primary) !important;
+      }
+
+      [data-theme="dark"] .modal {
+        background: rgba(0, 0, 0, 0.8);
+      }
+
+      [data-theme="dark"] .close-modal {
+        color: #ffffff;
+      }
+
+      [data-theme="dark"] .template-card {
+        background: var(--bg-primary);
+        border-color: var(--border-color);
+      }
+
+      [data-theme="dark"] .template-card h5,
+      [data-theme="dark"] .template-card p {
+        color: var(--text-primary);
+      }
+
+      .table-responsive {
+        overflow-x: auto;
+      }
+
+      @media print {
+        body {
+          font-size: 10px;
+        }
+
+        button {
+          display: none !important;
+        }
+
+        .d-print-none {
+          display: none !important;
+        }
+
+        .input-group-text,
+        input,
+        textarea {
+          border: none !important;
+          box-shadow: none !important;
+          outline: none !important;
+        }
+
+        .header-nav,
+        .blog-footer {
+          display: none !important;
+        }
+
+        .container {
+          max-width: 100%;
+          padding: 0;
+        }
+      }
+
+      @media (max-width: 768px) {
+        body {
+          font-size: 10px;
+        }
+
+        .table-sm td,
+        .table-sm th {
+          padding: 0.2rem;
+          font-size: 9px;
+        }
+
+        .control-panel {
+          flex-direction: column;
+        }
+
+        .modal-content {
+          width: 95%;
+          margin: 10% auto;
+          padding: 15px;
+          max-height: 90vh;
+        }
+
+        .wizard-modal .modal-content {
+          padding: 15px;
+          max-width: 95%;
+        }
+
+        .wizard-stepper {
+          overflow-x: auto;
+        }
+
+        .wizard-step-label {
+          font-size: 7px;
+        }
+
+        .btn {
+          font-size: 10px;
+          padding: 5px 10px;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .table-responsive {
+          font-size: 8px;
+        }
+
+        input.form-control {
+          font-size: 10px;
+        }
+      }
     </style>
   </head>
-<body>
-    <script type="text/javascript">
-      getPrice = function() {
-	  
-        var numVal1 = Number(document.getElementById("a1").value);
-        var numVal2 = Number(document.getElementById("a2").value);
-        var totalValue = numVal1 * ( numVal2 /100);
-        document.getElementById("Tot1").value = totalValue.toFixed(2);
-      
-        var numVal1 = Number(document.getElementById("b1").value);
-        var numVal2 = Number(document.getElementById("b2").value);
-        var totalValue = numVal1 * ( numVal2 /100);
-        document.getElementById("Tot2").value = totalValue.toFixed(2);
-      
-        var numVal1 = Number(document.getElementById("c1").value);
-        var numVal2 = Number(document.getElementById("c2").value);
-        var totalValue = numVal1 * ( numVal2 /100);
-        document.getElementById("Tot3").value = totalValue.toFixed(2);
-      
-        var numVal1 = Number(document.getElementById("d1").value);
-        var numVal2 = Number(document.getElementById("d2").value);
-        var totalValue = numVal1 * ( numVal2 /100);
-        document.getElementById("Tot4").value = totalValue.toFixed(2);
-      
-        var numVal1 = Number(document.getElementById("e1").value);
-        var numVal2 = Number(document.getElementById("e2").value);
-        var totalValue = numVal1 * ( numVal2 /100);
-        document.getElementById("Tot5").value = totalValue.toFixed(2);
-      
-        var numVal1 = Number(document.getElementById("f1").value);
-        var numVal2 = Number(document.getElementById("f2").value);
-        var totalValue = numVal1 * ( numVal2 /100);
-        document.getElementById("Tot6").value = totalValue.toFixed(2);
-      
-        var numVal1 = Number(document.getElementById("g1").value);
-        var numVal2 = Number(document.getElementById("g2").value);
-        var totalValue = numVal1 * ( numVal2 /100);
-        document.getElementById("Tot7").value = totalValue.toFixed(2);
-      
-        var numVal1 = Number(document.getElementById("h1").value);
-        var numVal2 = Number(document.getElementById("h2").value);
-        var totalValue = numVal1 * ( numVal2 /100);
-        document.getElementById("Tot8").value = totalValue.toFixed(2);
-      
-        var numVal1 = Number(document.getElementById("i1").value);
-        var numVal2 = Number(document.getElementById("i2").value);
-        var totalValue = numVal1 * ( numVal2 /100);
-        document.getElementById("Tot9").value = totalValue.toFixed(2);
-      
-        var numVal1 = Number(document.getElementById("j1").value);
-        var numVal2 = Number(document.getElementById("j2").value);
-        var totalValue = numVal1 * ( numVal2 /100);
-        document.getElementById("Tot10").value = totalValue.toFixed(2);
-      
-        var numVal1 = Number(document.getElementById("k1").value);
-        var numVal2 = Number(document.getElementById("k2").value);
-        var totalValue = numVal1 * ( numVal2 /100);
-        document.getElementById("Tot11").value = totalValue.toFixed(2);
-      
-        var numVal1 = Number(document.getElementById("l1").value);
-        var numVal2 = Number(document.getElementById("l2").value);
-        var totalValue = numVal1 * ( numVal2 /100);
-        document.getElementById("Tot12").value = totalValue.toFixed(2);
-      
-        var numVal1 = Number(document.getElementById("m1").value);
-        var numVal2 = Number(document.getElementById("m2").value);
-        var totalValue = numVal1 * ( numVal2 /100);
-        document.getElementById("Tot13").value = totalValue.toFixed(2);
-      
-        var numVal1 = Number(document.getElementById("n1").value);
-        var numVal2 = Number(document.getElementById("n2").value);
-        var totalValue = numVal1 * ( numVal2 /100);
-        document.getElementById("Tot14").value = totalValue.toFixed(2);
-      
-        var numVal1 = Number(document.getElementById("o1").value);
-        var numVal2 = Number(document.getElementById("o2").value);
-        var totalValue = numVal1 * ( numVal2 /100);
-        document.getElementById("Tot15").value = totalValue.toFixed(2);
-      
-        var numVal1 = Number(document.getElementById("p1").value);
-        var numVal2 = Number(document.getElementById("p2").value);
-        var totalValue = numVal1 * ( numVal2 /100);
-        document.getElementById("Tot16").value = totalValue.toFixed(2);
-      
-        var numVal1 = Number(document.getElementById("q1").value);
-        var numVal2 = Number(document.getElementById("q2").value);
-        var totalValue = numVal1 * ( numVal2 /100);
-        document.getElementById("Tot17").value = totalValue.toFixed(2);
-      
-        var numVal1 = Number(document.getElementById("r1").value);
-        var numVal2 = Number(document.getElementById("r2").value);
-        var totalValue = numVal1 * ( numVal2 /100);
-        document.getElementById("Tot18").value = totalValue.toFixed(2);
-      
-        var numVal1 = Number(document.getElementById("s1").value);
-        var numVal2 = Number(document.getElementById("s2").value);
-        var totalValue = numVal1 * ( numVal2 /100);
-        document.getElementById("Tot19").value = totalValue.toFixed(2);
-      
-        var numVal1 = Number(document.getElementById("t1").value);
-        var numVal2 = Number(document.getElementById("t2").value);
-        var totalValue = numVal1 * ( numVal2 /100);
-        document.getElementById("Tot20").value = totalValue.toFixed(2);
-      
-      
-      }
-    </script>
-    <script type="text/javascript">
-      getFullPrice = function() {
-        var numVal1 = Number(document.getElementById("Tot1").value);
-        var numVal2 = Number(document.getElementById("Tot2").value);
-        var numVal3 = Number(document.getElementById("Tot3").value);
-        var numVal4 = Number(document.getElementById("Tot4").value);
-        var numVal5 = Number(document.getElementById("Tot5").value);
-        var numVal6 = Number(document.getElementById("Tot6").value);
-        var numVal7 = Number(document.getElementById("Tot7").value);
-        var numVal8 = Number(document.getElementById("Tot8").value);
-        var numVal9 = Number(document.getElementById("Tot9").value);
-        var numVal10 = Number(document.getElementById("Tot10").value);
-        var numVal11 = Number(document.getElementById("Tot11").value);
-        var numVal12 = Number(document.getElementById("Tot12").value);
-        var numVal13 = Number(document.getElementById("Tot13").value);
-        var numVal14 = Number(document.getElementById("Tot14").value);
-        var numVal15 = Number(document.getElementById("Tot15").value);
-        var numVal16 = Number(document.getElementById("Tot16").value);
-        var numVal17 = Number(document.getElementById("Tot17").value);
-        var numVal18 = Number(document.getElementById("Tot18").value);
-        var numVal19 = Number(document.getElementById("Tot19").value);
-        var numVal20 = Number(document.getElementById("Tot20").value);
-      
-        var totalValue = numVal1 + numVal2 + numVal3 + numVal4 + numVal5 + numVal6 + numVal7 + numVal8 + numVal9 + numVal10 + numVal11 + numVal12 + numVal13 + numVal14 + numVal15 + numVal16 + numVal17 + numVal18 + numVal19 + numVal20;
-        document.getElementById("result").value = totalValue.toFixed(2);
-      
-      }
-    </script>
-	<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-      <h5 class="my-0 mr-md-auto font-weight-normal">Zakkath Calculator</h5>
-      <nav class="my-2 my-md-0 mr-md-3">
-        <a class="p-2 text-dark" href="#">About</a>
-        <a class="p-2 text-dark" href="#">FAQ</a>
-        <a class="p-2 text-dark" href="#">Support</a>
-      </nav>
-      <a class="btn btn-outline-primary" href="#">Sign up</a>
-    </div>
-    <div class="container my-3 p-3 bg-white rounded box-shadow">
-    <h2 class="text-center pt-4">Zakkath Calculator</h2>
-	<p class="text-center pb-4">Use Tab Key to Naavigate from Text Fields Easily</p>
-	<div class="">
-	
-	</div>
-      <table class="table-sm table table-bordered table-striped table-hover">
-        <tr class="text-center" style="font-weight:bold;">
+<body data-theme="light">
+    <script>
+      // Optimized calculation system using loops instead of repetitive code
+      const FIELD_COUNT = 20;
+      const FIELD_IDS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't'];
 
-          <td class="align-middle">സകാത്ത് ബാധകമാകുന്ന ഇനങ്ങള്‍</td>
-          <td class="align-middle">ബാധകമാകുന്ന പരിധി</td>
-          <td class="align-middle">കൈവശമുള്ള അളവ്	</td>
-          <td style="min-width:110px;">ആകെ മൂല്യം</td>
-          <td style="min-width:100px;">തോത്</td>
-          <td style="min-width:130px;">സകാത്ത് സംഖ്യ</td>
-        </tr>
+      // Templates
+      const TEMPLATES = {
+        business: {
+          name: 'Business Owner',
+          description: 'For business owners with inventory and income',
+          fields: { 'k1': 500000, 'l1': 300000 }
+        },
+        salary: {
+          name: 'Salaried Person',
+          description: 'For salaried individuals with savings',
+          fields: { 'l1': 400000, 'a1': 100000 }
+        },
+        farmer: {
+          name: 'Farmer',
+          description: 'For agricultural income',
+          fields: { 'c1': 200000, 'd1': 150000 }
+        },
+        comprehensive: {
+          name: 'Comprehensive',
+          description: 'All categories filled with sample values',
+          fields: {
+            'a1': 100000, 'b1': 50000, 'c1': 200000,
+            'k1': 500000, 'l1': 300000
+          }
+        }
+      };
+
+      // Auto-save key
+      const AUTOSAVE_KEY = 'zakkath_calculator_autosave';
+      const THEME_KEY = 'zakkath_theme';
+      const FONT_SIZE_KEY = 'zakkath_font_size';
+
+      // Wizard configuration
+      const WIZARD_QUESTIONS = [
+        {
+          id: 1,
+          category: 'സ്വർണ്ണവും രത്നങ്ങളും',
+          icon: 'fas fa-gem',
+          field: 'a1',
+          title: 'Gold, Gems, Pearls, and Jewelry',
+          description: 'If you have 85 grams of gold jewelry or equivalent value in pearls, gems, or coral',
+          label: 'Total Value of Gold/Jewelry (₹)',
+          placeholder: 'e.g., 250000',
+          rate: 2.5,
+          help: 'Include all gold jewelry, gems, pearls. Nisab is 85 grams of gold.'
+        },
+        {
+          id: 2,
+          category: 'വെള്ളി',
+          icon: 'fas fa-ring',
+          field: 'b1',
+          title: 'Silver',
+          description: 'If you have 595 grams of silver',
+          label: 'Total Value of Silver (₹)',
+          placeholder: 'e.g., 50000',
+          rate: 2.5,
+          help: 'Include all silver items. Nisab is 595 grams.'
+        },
+        {
+          id: 3,
+          category: 'നെല്ല് (ചെലവ് കഴിഞ്ഞ്)',
+          icon: 'fas fa-seedling',
+          field: 'c1',
+          title: 'Rice/Paddy (After Expenses)',
+          description: 'Agricultural income after farming and harvest expenses - approximately 1300 kg rice or equivalent',
+          label: 'Value After Expenses (₹)',
+          placeholder: 'e.g., 100000',
+          rate: 10,
+          help: 'Deduct farming and harvest costs. Nisab: ~1300kg rice value.'
+        },
+        {
+          id: 4,
+          category: 'നെല്ല് (ചെലവ് കഴിക്കാതെ)',
+          icon: 'fas fa-seedling',
+          field: 'd1',
+          title: 'Rice/Paddy (Without Deducting Expenses)',
+          description: 'If not deducting expenses',
+          label: 'Total Value (₹)',
+          placeholder: 'e.g., 150000',
+          rate: 5,
+          help: 'Use this if you don\'t want to deduct expenses.'
+        },
+        {
+          id: 5,
+          category: 'റബ്ബർ, കശുവണ്ടി (ചെലവ് കഴിഞ്ഞ്)',
+          icon: 'fas fa-leaf',
+          field: 'e1',
+          title: 'Rubber, Cashew, Pepper, Tea (After Expenses)',
+          description: 'Annual income equivalent to ~1300kg rice value after expenses',
+          label: 'Value After Expenses (₹)',
+          placeholder: 'e.g., 200000',
+          rate: 10,
+          help: 'Commercial crops income after deducting expenses.'
+        },
+        {
+          id: 6,
+          category: 'റബ്ബർ, കശുവണ്ടി (ചെലവ് കഴിക്കാതെ)',
+          icon: 'fas fa-leaf',
+          field: 'f1',
+          title: 'Rubber, Cashew (Without Deducting Expenses)',
+          description: 'If not deducting expenses',
+          label: 'Total Value (₹)',
+          placeholder: 'e.g., 250000',
+          rate: 5,
+          help: 'Gross income without expense deduction.'
+        },
+        {
+          id: 7,
+          category: 'കച്ചവടം',
+          icon: 'fas fa-store',
+          field: 'k1',
+          title: 'Business/Trade',
+          description: 'Annual profit + value of inventory at year end, if total equals 85g gold value',
+          label: 'Business Assets + Profit (₹)',
+          placeholder: 'e.g., 500000',
+          rate: 2.5,
+          help: 'Include inventory value and annual profit. Deduct debts.'
+        },
+        {
+          id: 8,
+          category: 'ശമ്പളം',
+          icon: 'fas fa-money-bill-wave',
+          field: 'l1',
+          title: 'Salary, Wages, Professional Fees',
+          description: 'After basic living expenses, if annual savings equal 85g gold value',
+          label: 'Annual Savings (₹)',
+          placeholder: 'e.g., 300000',
+          rate: 2.5,
+          help: 'Salary/fees minus living expenses. Nisab: 85g gold.'
+        },
+        {
+          id: 9,
+          category: 'വാടക വരുമാനം',
+          icon: 'fas fa-building',
+          field: 'i1',
+          title: 'Rental Income (Building, Business, etc.)',
+          description: 'Annual income after expenses and depreciation - equivalent to ~650kg rice value',
+          label: 'Net Rental Income (₹)',
+          placeholder: 'e.g., 400000',
+          rate: 10,
+          help: 'From rental properties, after all expenses.'
+        },
+        {
+          id: 10,
+          category: 'ഷെയർ (കച്ചവട)',
+          icon: 'fas fa-chart-line',
+          field: 'p1',
+          title: 'Shares (Trading)',
+          description: 'Share value + dividends if total equals 85g gold value',
+          label: 'Total Share Value (₹)',
+          placeholder: 'e.g., 200000',
+          rate: 2.5,
+          help: 'Market value of shares plus dividends received.'
+        }
+      ];
+
+      let wizardState = {
+        currentStep: 0,
+        answers: {},
+        completed: false
+      };
+
+      // Number formatting - Indian style (1,00,00,000)
+      function formatIndianNumber(num) {
+        if (!num || isNaN(num)) return '0.00';
+
+        const parts = parseFloat(num).toFixed(2).split('.');
+        let integerPart = parts[0];
+        const decimalPart = parts[1];
+
+        // Indian numbering system
+        let lastThree = integerPart.substring(integerPart.length - 3);
+        const otherNumbers = integerPart.substring(0, integerPart.length - 3);
+
+        if (otherNumbers !== '') {
+          lastThree = ',' + lastThree;
+        }
+
+        const formatted = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ',') + lastThree;
+        return formatted + '.' + decimalPart;
+      }
+
+      // Remove formatting for calculation
+      function parseFormattedNumber(str) {
+        if (!str) return 0;
+        return parseFloat(str.toString().replace(/,/g, '')) || 0;
+      }
+
+      // Calculate individual zakat amounts
+      function getPrice() {
+        let totalAssets = 0;
+        let totalZakat = 0;
+
+        FIELD_IDS.forEach((id, index) => {
+          const inputElement = document.getElementById(`${id}1`);
+          if (!inputElement) return;
+
+          const value1 = parseFormattedNumber(inputElement.value);
+          const rateElement = document.getElementById(`${id}2`);
+          const rate = rateElement ? parseFloat(rateElement.value) || 0 : 0;
+          const total = value1 * (rate / 100);
+
+          totalAssets += value1;
+          totalZakat += total;
+
+          const resultElement = document.getElementById(`Tot${index + 1}`);
+          if (resultElement) {
+            resultElement.value = formatIndianNumber(total);
+          }
+        });
+
+        // Update footer subtotals
+        const subtotalAssetsElement = document.getElementById('subtotalAssets');
+        if (subtotalAssetsElement) {
+          subtotalAssetsElement.value = formatIndianNumber(totalAssets);
+        }
+
+        const subtotalZakatElement = document.getElementById('subtotalZakat');
+        if (subtotalZakatElement) {
+          subtotalZakatElement.value = formatIndianNumber(totalZakat);
+        }
+
+        showNotification('Sub-totals calculated!', 'success');
+      }
+
+      // Calculate total zakat
+      function getFullPrice() {
+        // First ensure all sub-totals are calculated
+        getPrice();
+
+        let totalValue = 0;
+        for (let i = 1; i <= FIELD_COUNT; i++) {
+          const element = document.getElementById(`Tot${i}`);
+          if (element && element.value) {
+            totalValue += parseFormattedNumber(element.value);
+          }
+        }
+
+        const resultElement = document.getElementById("result");
+        if (resultElement) {
+          resultElement.value = formatIndianNumber(totalValue);
+        }
+
+        // Update the display result in debt section
+        const displayResult = document.getElementById("displayResult");
+        if (displayResult) {
+          displayResult.value = formatIndianNumber(totalValue);
+        }
+
+        // Update footer total
+        const footerTotal = document.getElementById("footerTotal");
+        if (footerTotal) {
+          footerTotal.value = formatIndianNumber(totalValue);
+        }
+
+        // Calculate net zakat
+        calculateNetZakat();
+
+        showNotification(`Total Zakat: ₹${formatIndianNumber(totalValue)}`, 'success');
+
+        return totalValue;
+      }
+
+      // Real-time calculation on input change
+      function calculate() {
+        getPrice();
+        getFullPrice();
+        calculateNetZakat();
+        updateProgress();
+        autoSave();
+        updateVisualFeedback();
+      }
+
+      // Update progress indicator
+      function updateProgress() {
+        let filledCount = 0;
+        FIELD_IDS.forEach(id => {
+          const element = document.getElementById(`${id}1`);
+          const value = parseFormattedNumber(element?.value);
+          if (value > 0) filledCount++;
+        });
+
+        const percentage = (filledCount / FIELD_COUNT) * 100;
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+
+        if (progressBar) progressBar.style.width = percentage + '%';
+        if (progressText) progressText.textContent = `${filledCount} of ${FIELD_COUNT} categories filled (${Math.round(percentage)}%)`;
+      }
+
+      // Visual feedback for filled inputs
+      function updateVisualFeedback() {
+        FIELD_IDS.forEach(id => {
+          const input = document.getElementById(`${id}1`);
+          if (input) {
+            const value = parseFormattedNumber(input.value);
+            if (value > 0) {
+              input.classList.add('has-value');
+            } else {
+              input.classList.remove('has-value');
+            }
+          }
+        });
+      }
+
+      // Auto-save to localStorage
+      function autoSave() {
+        const data = {};
+        FIELD_IDS.forEach(id => {
+          const value = document.getElementById(`${id}1`)?.value;
+          if (value) data[`${id}1`] = value;
+        });
+
+        // Save debt and notes
+        const debt = document.getElementById('debtAmount')?.value;
+        if (debt) data.debtAmount = debt;
+
+        localStorage.setItem(AUTOSAVE_KEY, JSON.stringify(data));
+        localStorage.setItem(AUTOSAVE_KEY + '_timestamp', new Date().toISOString());
+      }
+
+      // Load auto-saved data
+      function loadAutoSave() {
+        try {
+          const saved = localStorage.getItem(AUTOSAVE_KEY);
+          if (saved) {
+            const data = JSON.parse(saved);
+            Object.keys(data).forEach(key => {
+              const element = document.getElementById(key);
+              if (element) element.value = data[key];
+            });
+
+            const timestamp = localStorage.getItem(AUTOSAVE_KEY + '_timestamp');
+            if (timestamp) {
+              const date = new Date(timestamp);
+              const msg = `Restored data from ${date.toLocaleString()}`;
+              showNotification(msg, 'success');
+            }
+
+            calculate();
+            return true;
+          }
+        } catch (e) {
+          console.error('Error loading autosave:', e);
+        }
+        return false;
+      }
+
+      // Clear all inputs
+      function clearAll() {
+        if (confirm('Are you sure you want to clear all values? This will also delete auto-saved data.')) {
+          document.querySelectorAll('input[type="text"]').forEach(input => {
+            if (!input.readOnly) {
+              input.value = '';
+            }
+          });
+          localStorage.removeItem(AUTOSAVE_KEY);
+          localStorage.removeItem(AUTOSAVE_KEY + '_timestamp');
+          calculate();
+          showNotification('All data cleared', 'info');
+        }
+      }
+
+      // Theme toggle
+      function toggleTheme() {
+        const body = document.body;
+        const currentTheme = body.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        body.setAttribute('data-theme', newTheme);
+        localStorage.setItem(THEME_KEY, newTheme);
+
+        const icon = document.getElementById('themeIcon');
+        if (icon) {
+          icon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+      }
+
+      // Font size control
+      function changeFontSize(size) {
+        const body = document.body;
+        body.className = body.className.replace(/font-\w+/g, '');
+        body.classList.add('font-' + size);
+        localStorage.setItem(FONT_SIZE_KEY, size);
+      }
+
+      // Export to PDF (print)
+      function exportToPDF() {
+        window.print();
+      }
+
+      // Export to JSON
+      function exportToJSON() {
+        const data = {
+          date: new Date().toISOString(),
+          calculations: {},
+          totals: {},
+          finalTotal: parseFormattedNumber(document.getElementById('result')?.value || document.getElementById('displayResult')?.value)
+        };
+
+        FIELD_IDS.forEach((id, index) => {
+          const value = parseFormattedNumber(document.getElementById(`${id}1`)?.value);
+          const total = parseFormattedNumber(document.getElementById(`Tot${index + 1}`)?.value);
+          if (value > 0) {
+            data.calculations[id] = { value, total };
+          }
+        });
+
+        const debt = parseFormattedNumber(document.getElementById('debtAmount')?.value);
+        if (debt > 0) data.debt = debt;
+
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `zakkath-calculation-${new Date().toISOString().split('T')[0]}.json`;
+        a.click();
+        URL.revokeObjectURL(url);
+
+        showNotification('Exported to JSON', 'success');
+      }
+
+      // Copy to clipboard
+      function copyToClipboard() {
+        let text = 'Zakkath Calculator Results\n\n';
+        text += `Date: ${new Date().toLocaleDateString()}\n\n`;
+
+        FIELD_IDS.forEach((id, index) => {
+          const value = document.getElementById(`${id}1`)?.value;
+          const total = document.getElementById(`Tot${index + 1}`)?.value;
+          const numValue = parseFormattedNumber(value);
+          if (numValue > 0) {
+            text += `Category ${index + 1}: Rs. ${value} → Zakat: Rs. ${total}\n`;
+          }
+        });
+
+        const finalTotal = document.getElementById('result')?.value || document.getElementById('displayResult')?.value;
+        const debt = document.getElementById('debtAmount')?.value;
+        const netZakat = debt ? formatIndianNumber(parseFormattedNumber(finalTotal) - parseFormattedNumber(debt)) : finalTotal;
+
+        text += `\nTotal Zakat: Rs. ${finalTotal}`;
+        if (debt) text += `\nDebt: Rs. ${debt}\nNet Zakat: Rs. ${netZakat}`;
+
+        navigator.clipboard.writeText(text).then(() => {
+          showNotification('Copied to clipboard!', 'success');
+        }).catch(() => {
+          showNotification('Failed to copy', 'error');
+        });
+      }
+
+      // Show notification
+      function showNotification(message, type = 'info') {
+        const notification = document.createElement('div');
+        notification.style.cssText = `
+          position: fixed;
+          top: 20px;
+          right: 20px;
+          padding: 15px 20px;
+          background: ${type === 'success' ? '#28a745' : type === 'error' ? '#dc3545' : '#17a2b8'};
+          color: white;
+          border-radius: 5px;
+          z-index: 9999;
+          box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+          animation: slideIn 0.3s ease;
+        `;
+        notification.textContent = message;
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+          notification.style.animation = 'slideOut 0.3s ease';
+          setTimeout(() => notification.remove(), 300);
+        }, 3000);
+      }
+
+      // Load template
+      function loadTemplate(templateName) {
+        const template = TEMPLATES[templateName];
+        if (!template) return;
+
+        if (confirm(`Load template: ${template.name}?\n${template.description}`)) {
+          clearAll();
+          Object.keys(template.fields).forEach(key => {
+            const element = document.getElementById(key);
+            if (element) element.value = template.fields[key];
+          });
+          calculate();
+          closeModal('templatesModal');
+          showNotification(`Template "${template.name}" loaded`, 'success');
+        }
+      }
+
+      // Modal controls
+      function openModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) modal.style.display = 'block';
+      }
+
+      function closeModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) modal.style.display = 'none';
+      }
+
+      // Calculate net zakat after debt
+      function calculateNetZakat() {
+        const resultElement = document.getElementById('result');
+        const displayResultElement = document.getElementById('displayResult');
+        const totalZakat = parseFormattedNumber(resultElement?.value || displayResultElement?.value);
+        const debt = parseFormattedNumber(document.getElementById('debtAmount')?.value);
+        const netZakat = Math.max(0, totalZakat - debt);
+
+        const netElement = document.getElementById('netZakat');
+        if (netElement) {
+          netElement.value = formatIndianNumber(netZakat);
+          animateNumber(netElement, netZakat);
+        }
+      }
+
+      // Animate number change
+      function animateNumber(element, targetValue) {
+        element.classList.add('animated-number');
+        setTimeout(() => element.classList.remove('animated-number'), 500);
+      }
+
+      // Fetch gold price (mock - in production, use real API)
+      async function fetchGoldPrice() {
+        try {
+          // Mock data - replace with real API call
+          const goldPrice = 5500; // per gram
+          const nisabGold = 85; // grams
+          const nisabValue = (goldPrice * nisabGold).toFixed(2);
+
+          const banner = document.getElementById('goldPriceBanner');
+          if (banner) {
+            banner.innerHTML = `
+              <i class="fas fa-coins"></i>
+              Current Gold: ₹${goldPrice}/gram |
+              Nisab (85g): ₹${nisabValue}
+              <small style="font-size: 8px; display: block; margin-top: 5px;">
+                (Prices are indicative - verify with local market)
+              </small>
+            `;
+          }
+        } catch (e) {
+          console.error('Error fetching gold price:', e);
+        }
+      }
+
+      // Wizard Functions
+      function startWizard() {
+        wizardState = {
+          currentStep: 0,
+          answers: {},
+          completed: false
+        };
+        renderWizard();
+        openModal('wizardModal');
+      }
+
+      function renderWizard() {
+        const totalSteps = WIZARD_QUESTIONS.length;
+        const currentQuestion = WIZARD_QUESTIONS[wizardState.currentStep];
+
+        // Update stepper
+        const stepperHTML = WIZARD_QUESTIONS.map((q, index) => {
+          const stepClass = index === wizardState.currentStep ? 'active' :
+                           index < wizardState.currentStep ? 'completed' : '';
+          return `
+            <div class="wizard-step ${stepClass}">
+              <div class="wizard-step-circle">
+                ${index < wizardState.currentStep ? '<i class="fas fa-check"></i>' : index + 1}
+              </div>
+              <span class="wizard-step-label">${q.category}</span>
+            </div>
+          `;
+        }).join('');
+
+        document.getElementById('wizardStepper').innerHTML = stepperHTML;
+
+        // Update questions
+        const questionsHTML = WIZARD_QUESTIONS.map((q, index) => {
+          const isActive = index === wizardState.currentStep;
+          const savedValue = wizardState.answers[q.field] || '';
+          const displayValue = savedValue ? formatIndianNumber(parseFormattedNumber(savedValue)) : '';
+
+          return `
+            <div class="wizard-question ${isActive ? 'active' : ''}" data-step="${index}">
+              <div class="wizard-category-icon"><i class="${q.icon}"></i></div>
+              <h4>${q.title}</h4>
+              <div class="wizard-question-desc">
+                <strong>Condition:</strong> ${q.description}<br>
+                <small><i class="fas fa-info-circle"></i> ${q.help}</small>
+              </div>
+              <div class="wizard-input-group">
+                <label for="wizard_${q.field}">${q.label}</label>
+                <input
+                  type="text"
+                  id="wizard_${q.field}"
+                  placeholder="${q.placeholder}"
+                  value="${displayValue}"
+                  class="wizard-input"
+                />
+                <small style="color: var(--text-secondary); font-size: 9px; display: block; margin-top: 5px;">
+                  Zakat Rate: ${q.rate}% | Leave blank if not applicable
+                </small>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        document.getElementById('wizardQuestions').innerHTML = questionsHTML;
+
+        // Update navigation buttons
+        const prevBtn = document.getElementById('wizardPrevBtn');
+        const nextBtn = document.getElementById('wizardNextBtn');
+        const finishBtn = document.getElementById('wizardFinishBtn');
+
+        prevBtn.style.display = wizardState.currentStep === 0 ? 'none' : 'block';
+        nextBtn.style.display = wizardState.currentStep === totalSteps - 1 ? 'none' : 'block';
+        finishBtn.style.display = wizardState.currentStep === totalSteps - 1 ? 'block' : 'none';
+
+        // Add event listeners to the active wizard input
+        setTimeout(() => {
+          const input = document.getElementById(`wizard_${currentQuestion.field}`);
+          if (input) {
+            // Focus on input
+            input.focus();
+
+            // Add formatting on focus - remove commas
+            input.addEventListener('focus', function() {
+              const value = parseFormattedNumber(this.value);
+              if (value > 0) {
+                this.value = value.toString();
+              }
+            });
+
+            // Add formatting on blur - add commas
+            input.addEventListener('blur', function() {
+              const value = parseFormattedNumber(this.value);
+              if (value > 0) {
+                this.value = formatIndianNumber(value);
+              }
+            });
+
+            // Validate input
+            input.addEventListener('input', function(e) {
+              const value = this.value;
+              // Remove non-numeric characters except decimal point and comma
+              const sanitized = value.replace(/[^\d.,]/g, '');
+              // Remove existing commas for processing
+              this.value = sanitized.replace(/,/g, '');
+            });
+
+            // Enter key to go next
+            input.addEventListener('keypress', function(e) {
+              if (e.key === 'Enter') {
+                e.preventDefault();
+                const value = parseFormattedNumber(this.value);
+                if (value > 0) {
+                  this.value = formatIndianNumber(value);
+                }
+                if (wizardState.currentStep === totalSteps - 1) {
+                  wizardFinish();
+                } else {
+                  wizardNext();
+                }
+              }
+            });
+          }
+        }, 100);
+      }
+
+      function wizardNext() {
+        const currentQuestion = WIZARD_QUESTIONS[wizardState.currentStep];
+        const input = document.getElementById(`wizard_${currentQuestion.field}`);
+
+        // Save current answer (unformatted for storage)
+        if (input && input.value) {
+          const numValue = parseFormattedNumber(input.value);
+          if (numValue > 0) {
+            wizardState.answers[currentQuestion.field] = numValue.toString();
+          }
+        }
+
+        if (wizardState.currentStep < WIZARD_QUESTIONS.length - 1) {
+          wizardState.currentStep++;
+          renderWizard();
+        }
+      }
+
+      function wizardPrev() {
+        if (wizardState.currentStep > 0) {
+          wizardState.currentStep--;
+          renderWizard();
+        }
+      }
+
+      function wizardSkipCategory() {
+        wizardNext();
+      }
+
+      function wizardFinish() {
+        // Save current answer
+        const currentQuestion = WIZARD_QUESTIONS[wizardState.currentStep];
+        const input = document.getElementById(`wizard_${currentQuestion.field}`);
+        if (input && input.value) {
+          const numValue = parseFormattedNumber(input.value);
+          if (numValue > 0) {
+            wizardState.answers[currentQuestion.field] = numValue.toString();
+          }
+        }
+
+        // Populate main form with formatted values
+        Object.keys(wizardState.answers).forEach(fieldId => {
+          const element = document.getElementById(fieldId);
+          if (element) {
+            const value = parseFormattedNumber(wizardState.answers[fieldId]);
+            element.value = formatIndianNumber(value);
+          }
+        });
+
+        // Calculate everything
+        calculate();
+
+        // Close wizard
+        closeModal('wizardModal');
+
+        // Show success message
+        const filledCount = Object.keys(wizardState.answers).length;
+        showNotification(`Questionnaire completed! ${filledCount} categories filled successfully.`, 'success');
+
+        // Scroll to results
+        setTimeout(() => {
+          const resultSection = document.querySelector('.debt-section');
+          if (resultSection) {
+            resultSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }, 500);
+      }
+
+      // Allow Enter key to move to next question (removed old handler as it's now in renderWizard)
+      // Keyboard shortcuts for main app
+      document.addEventListener('keydown', function(e) {
+        // Don't interfere with wizard Enter key handling
+        if (document.getElementById('wizardModal')?.style.display === 'block') {
+          return;
+        }
+
+        if (e.ctrlKey || e.metaKey) {
+          if (e.key === 'p') {
+            e.preventDefault();
+            exportToPDF();
+          } else if (e.key === 's') {
+            e.preventDefault();
+            showNotification('Data auto-saved!', 'success');
+          }
+        }
+      });
+
+      // Add input validation
+      function validateNumberInput(event) {
+        const input = event.target;
+        const value = input.value;
+
+        // Remove non-numeric characters except decimal point and comma
+        const sanitized = value.replace(/[^\d.,]/g, '');
+
+        // Remove existing commas for processing
+        const withoutCommas = sanitized.replace(/,/g, '');
+
+        // Ensure only one decimal point
+        const parts = withoutCommas.split('.');
+        if (parts.length > 2) {
+          input.value = parts[0] + '.' + parts.slice(1).join('');
+        } else {
+          input.value = withoutCommas;
+        }
+      }
+
+      // Format number on blur
+      function formatInputOnBlur(event) {
+        const input = event.target;
+        const value = parseFormattedNumber(input.value);
+        if (value > 0) {
+          input.value = formatIndianNumber(value);
+        }
+      }
+
+      // Remove formatting on focus for easier editing
+      function removeFormatOnFocus(event) {
+        const input = event.target;
+        const value = parseFormattedNumber(input.value);
+        if (value > 0) {
+          input.value = value.toString();
+        }
+      }
+
+      // Initialize on page load
+      document.addEventListener('DOMContentLoaded', function() {
+        // Load saved theme
+        const savedTheme = localStorage.getItem(THEME_KEY) || 'light';
+        document.body.setAttribute('data-theme', savedTheme);
+        const themeIcon = document.getElementById('themeIcon');
+        if (themeIcon) {
+          themeIcon.className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        // Load saved font size
+        const savedFontSize = localStorage.getItem(FONT_SIZE_KEY) || 'medium';
+        document.body.classList.add('font-' + savedFontSize);
+
+        // Check for auto-saved data
+        setTimeout(() => {
+          const hasData = loadAutoSave();
+          if (!hasData) {
+            // Show welcome message
+            const timestamp = localStorage.getItem(AUTOSAVE_KEY + '_timestamp');
+            if (!timestamp) {
+              showNotification('Welcome! Your data will be auto-saved as you type.', 'info');
+            }
+          }
+        }, 500);
+
+        // Add event listeners to all input fields
+        document.querySelectorAll('input[type="text"]:not([readonly])').forEach(input => {
+          input.addEventListener('input', function(e) {
+            validateNumberInput(e);
+          });
+
+          // Add focus event for row highlighting and remove formatting
+          input.addEventListener('focus', function(e) {
+            const row = this.closest('tr');
+            if (row) row.classList.add('active-row');
+            removeFormatOnFocus(e);
+          });
+
+          input.addEventListener('blur', function(e) {
+            const row = this.closest('tr');
+            if (row) row.classList.remove('active-row');
+            formatInputOnBlur(e);
+            calculate();
+          });
+
+          // Also calculate on Enter key
+          input.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+              e.target.blur();
+            }
+          });
+        });
+
+        // Debt calculator listener
+        const debtInput = document.getElementById('debtAmount');
+        if (debtInput) {
+          debtInput.addEventListener('input', function() {
+            calculateNetZakat();
+            autoSave();
+          });
+        }
+
+        // Close modals on outside click
+        window.onclick = function(event) {
+          if (event.target.classList.contains('modal')) {
+            event.target.style.display = 'none';
+          }
+        };
+
+        // Fetch gold price
+        fetchGoldPrice();
+
+        // Initial calculation
+        calculate();
+
+        // Add CSS animations
+        const style = document.createElement('style');
+        style.textContent = `
+          @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+          }
+          @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+          }
+        `;
+        document.head.appendChild(style);
+      });
+    </script>
+
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom box-shadow header-nav">
+      <h5 class="my-0 mr-md-auto font-weight-normal">സകാത്ത് കാൽക്കുലേറ്റർ | Zakkath Calculator</h5>
+      <nav class="my-2 my-md-0 mr-md-3 d-print-none">
+        <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode" aria-label="Toggle theme">
+          <i id="themeIcon" class="fas fa-moon"></i>
+        </button>
+        <button class="font-control" onclick="changeFontSize('small')" title="Small Font" aria-label="Decrease font size">A-</button>
+        <button class="font-control" onclick="changeFontSize('medium')" title="Medium Font" aria-label="Normal font size">A</button>
+        <button class="font-control" onclick="changeFontSize('large')" title="Large Font" aria-label="Increase font size">A+</button>
+        <button class="font-control" onclick="changeFontSize('xlarge')" title="Extra Large Font" aria-label="Extra large font">A++</button>
+      </nav>
+    </div>
+
+    <div class="container my-3 p-3 rounded box-shadow">
+      <div class="text-center">
+        <h1 class="d-print-none pt-4 h2">സകാത്ത് കാൽക്കുലേറ്റർ</h1>
+        <p class="d-print-none pb-4">Use Tab Key to Navigate from Text Fields Easily</p>
+      </div>
+
+      <!-- Gold Price Banner -->
+      <div id="goldPriceBanner" class="gold-price-banner d-print-none">
+        <i class="fas fa-spinner fa-spin"></i> Loading gold prices...
+      </div>
+
+      <!-- Control Panel -->
+      <div class="control-panel d-print-none d-flex flex-wrap justify-content-between align-items-center">
+        <div class="d-flex align-items-center">
+          <button class="btn btn-sm btn-info mr-2" onclick="exportToJSON()">
+            <i class="fas fa-download"></i> Export
+          </button>
+          <button class="btn btn-sm btn-warning mr-2" onclick="copyToClipboard()">
+            <i class="fas fa-copy"></i> Copy
+          </button>
+        </div>
+        <div>
+          <div class="progress-bar-container" style="width: 200px;">
+            <div id="progressBar" class="progress-bar-fill" style="width: 0%"></div>
+          </div>
+          <div id="progressText" class="progress-text text-center">0 of 20 categories filled (0%)</div>
+        </div>
+      </div>
+
+      <!-- Debt Calculator Section -->
+      <div class="debt-section d-print-none" style="background: linear-gradient(135deg, #fff3cd 0%, #ffe69c 100%); padding: 20px; border-radius: 8px; margin: 20px 0; border: 3px solid #ffc107; box-shadow: 0 4px 12px rgba(255, 193, 7, 0.4);">
+        <h6 style="color: #856404;"><i class="fas fa-calculator"></i> Debt Calculator (Optional)</h6>
+        <p style="font-size: 9px; margin-bottom: 10px;">If you have debts, subtract them from your total Zakat to get net payable amount:</p>
+        <div class="row align-items-end">
+          <div class="col-md-4">
+            <label style="font-weight: bold;">Total Debt Amount (₹):</label>
+            <input type="text" id="debtAmount" class="form-control form-control-sm" placeholder="0.00" style="height: 35px;">
+          </div>
+          <div class="col-md-4">
+            <label style="font-weight: bold;">Total Zakat Calculated (₹):</label>
+            <input type="text" id="displayResult" class="form-control form-control-sm highlight-yellow" readonly style="font-weight: bold; height: 35px;">
+          </div>
+          <div class="col-md-4">
+            <label style="font-weight: bold;">Net Zakat Payable (₹):</label>
+            <input type="text" id="netZakat" class="form-control form-control-sm font-weight-bold highlight-green" readonly style="font-weight: bold; height: 35px; font-size: 13px;">
+          </div>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-sm table-bordered table-striped table-hover" role="table" aria-label="Zakkath calculation table">
+        <thead>
+          <tr class="text-center" style="font-weight:bold;">
+            <th scope="col" class="align-middle">സകാത്ത് ബാധകമാകുന്ന ഇനങ്ങള്‍</th>
+            <th scope="col" class="align-middle">ബാധകമാകുന്ന പരിധി</th>
+            <th scope="col" style="min-width:110px;">ആകെ മൂല്യം</th>
+            <th scope="col" style="min-width:100px;">തോത്</th>
+            <th scope="col" style="min-width:130px;">സകാത്ത് സംഖ്യ</th>
+          </tr>
+        </thead>
+        <tbody>
         <tr>
           <td class="align-middle">സ്വര്‍ണ്ണം, രത്‌നം, മുത്ത്, പവിഴം, തുടങ്ങിയവ</td>
           <td class="align-middle">85 ഗ്രാം സ്വര്‍ണ്ണത്തിന്റെ ആഭരണമോ അതിന്റെ വിലക്കുള്ള മുത്തോ പവിഴമോ രത്‌നമോ ഉണ്ടെങ്കില്‍ ആകെയുളളതിന്റെ</td>
-          <td class="align-middle"><input tabindex="1" placeholder="Qty" class="form-control form-control-sm text-right" type="text" id="qty1"></td>
-          <td class="align-middle"><input  placeholder="Rs."  class="form-control form-control-sm text-right" tabindex="2" type="text" id="a1" onkeyup="calculate()"></td>
+          <td class="align-middle"><input placeholder="Rs." class="form-control form-control-sm text-right" tabindex="1" type="text" id="a1" aria-label="Value for gold"></td>
           <td class="align-middle">
-			<div class="input-group input-group-sm">
-              <input  class="form-control form-control-sm text-right"type="text"  value="2.5" id="a2" onkeyup="calculate()" readonly>
+            <div class="input-group input-group-sm">
+              <input class="form-control form-control-sm text-right" type="text" value="2.5" id="a2" readonly aria-label="Rate for gold">
               <div class="input-group-append">
-                <span class="input-group-text" id="basic-addon2">%</span>
+                <span class="input-group-text">%</span>
               </div>
             </div>
-		 </td>
-         <td class="align-middle"><input  class="form-control form-control-sm text-right" type="text" readonly id="Tot1" onkeyup="calculate()"></td>
+          </td>
+          <td class="align-middle"><input class="form-control form-control-sm text-right" type="text" readonly id="Tot1" aria-label="Zakat for gold"></td>
         </tr>
         <tr>
           <td class="align-middle">വെള്ളി </td>
           <td class="align-middle">595 ഗ്രാം </td>
-          <td class="align-middle"><input tabindex="3" placeholder="Qty" class="form-control form-control-sm text-right" type="text" id="qty1"></td>
           <td class="align-middle"><input tabindex="4" placeholder="Rs."  class="form-control form-control-sm text-right" type="text" id="b1" onkeyup="calculate()"></td>
           <td class="align-middle">
 			<div class="input-group input-group-sm">
@@ -235,7 +1765,6 @@
         <tr>
           <td class="align-middle" rowspan="2"> നെല്ല്, നാളികേരം, അടക്ക</td>
           <td class="align-middle">കാര്‍ഷിക ചെലവും വിളവെടുപ്പ് ചെലവും കഴിച്ച് ഒരു വര്‍ഷം ഏകദേശം 1300 കിലോഗ്രാം നെല്ല്/ തത്തുല്യമായ വിലക്ക് നാളിേകരം, അടക്ക ഉണ്ടെങ്കില്‍ അതിന്റെ</td>
-          <td class="align-middle"><input tabindex="5" placeholder="Qty" class="form-control form-control-sm text-right" type="text" id="qty1"></td>
           <td class="align-middle"><input tabindex="6" placeholder="Rs."  class="form-control form-control-sm text-right" type="text" id="c1" onkeyup="calculate()"></td>
           <td class="align-middle">
 			<div class="input-group input-group-sm">
@@ -249,7 +1778,6 @@
         </tr>
         <tr>
           <td class="align-middle">ചെലവു കഴിക്കുന്നില്ലെങ്കില്‍</td>
-          <td class="align-middle"><input tabindex="8" placeholder="Qty" class="form-control form-control-sm text-right" type="text" id="qty1"></td>
           <td class="align-middle"><input tabindex="9" placeholder="Rs."  class="form-control form-control-sm text-right" type="text" id="d1" onkeyup="calculate()"></td>
           <td class="align-middle">
 			<div class="input-group input-group-sm">
@@ -264,7 +1792,6 @@
         <tr>
           <td class="align-middle" rowspan="3">റബര്‍, കശുവണ്ടി, കുരുമുളക് , തേയില തുടങ്ങിയവ</td>
           <td class="align-middle">ഒരു വര്‍ഷം ഏകദേശം 1300 കിലോഗ്രാം നെല്ലിന്റെ വിലക്ക് തുല്ല്യമായ വരുമാനമുണ്ടെങ്കില്‍ അതിന്റെ </td>
-          <td class="align-middle"><input tabindex="10" placeholder="Qty" class="form-control form-control-sm text-right" type="text" id="qty1"></td>
           <td class="align-middle"><input tabindex="12" placeholder="Rs."  class="form-control form-control-sm text-right" type="text" id="e1" onkeyup="calculate()"></td>
           <td class="align-middle">
 			<div class="input-group input-group-sm">
@@ -278,7 +1805,6 @@
         </tr>
         <tr>
           <td class="align-middle">ചെലവു കഴിക്കുന്നില്ലെങ്കില്‍</td>
-          <td class="align-middle"><input tabindex="13" placeholder="Qty" class="form-control form-control-sm text-right" type="text" id="qty1"></td>
           <td class="align-middle"><input tabindex="14" placeholder="Rs."  class="form-control form-control-sm text-right" type="text" id="f1" onkeyup="calculate()"></td>
           <td class="align-middle">
 			<div class="input-group input-group-sm">
@@ -292,7 +1818,6 @@
         </tr>
         <tr>
           <td class="align-middle">നാണ്യവിളയായി പരിഗണിക്കുകയാണെങ്കില്‍ 2.5 ശതമാനം - പ്രബലം ആദ്യത്തേതാണ്‌</td>
-          <td class="align-middle"><input tabindex="15" placeholder="Qty" class="form-control form-control-sm text-right" type="text" id="qty1"></td>
           <td class="align-middle"><input tabindex="16" placeholder="Rs."  class="form-control form-control-sm text-right" type="text" id="g1" onkeyup="calculate()"></td>
           <td class="align-middle">
 			<div class="input-group input-group-sm">
@@ -307,7 +1832,6 @@
         <tr>
           <td class="align-middle">കപ്പ, കിഴങ്ങ്, ചേന, ചേമ്പ്, വാഴ, പയര്‍, വെള്ളരി, മാങ്ങ, ചക്ക, പപ്പായ തുടങ്ങിയവ</td>
           <td class="align-middle">കൃഷിക്കും വിളവെടുപ്പിനുമുള്ള ചെലവു കഴിച്ച് ഒരു വര്‍ഷം ഏകദേശം 650 കിലോഗ്രാം അരിയുടെ വിലക്ക് തുല്ല്യമായ വരുമാനമുണ്ടെങ്കില്‍ വരവിന്റെ</td>
-          <td class="align-middle"><input tabindex="17" placeholder="Qty" class="form-control form-control-sm text-right" type="text" id="qty1"></td>
           <td class="align-middle"><input tabindex="18" placeholder="Rs."  class="form-control form-control-sm text-right" type="text" id="h1" onkeyup="calculate()"></td>
           <td class="align-middle">
 			<div class="input-group input-group-sm">
@@ -322,7 +1846,6 @@
         <tr>
           <td class="align-middle">വാടക കെട്ടിടം, വ്യവസായം, ഗോട്ട് ഫാം, പൗള്‍ട്രി ഫാം, ട്രാവല്‍ ഏജന്‍സി, ബസ്സ്, ജീപ്പ്, ഓട്ടോറിക്ഷ, ആശുപത്രി, സ്‌കൂള്‍ തുടങ്ങിയവ</td>
           <td class="align-middle">നടത്തിപ്പ് ചെലവും കൂലിയും ഡിപ്രിസിയേഷനും കഴിച്ച് ഏകദേശം 650 കിലോഗ്രാം അരിയുടെ വില വാര്‍ഷിക വരുമാനമുണ്ടെങ്കില്‍ വരവിന്റെ (85 ഗ്രാം സ്വര്‍ണ്ണത്തിന്റെ അത്രയുണ്ടെങ്കിലേ നല്‍കേണ്ടതുള്ളുവെന്നും 2 മ്മ ശതമാനമാണെന്നും അഭിപ്രായമുള്ളവരുണ്ട്)</td>
-          <td class="align-middle"><input tabindex="19" placeholder="Qty" class="form-control form-control-sm text-right" type="text" id="qty1"></td>
           <td class="align-middle"><input tabindex="20" placeholder="Rs."  class="form-control form-control-sm text-right" type="text" id="i1" onkeyup="calculate()"></td>
           <td class="align-middle">
 			<div class="input-group input-group-sm">
@@ -337,7 +1860,6 @@
         <tr>
           <td class="align-middle">മൊത്തം കാര്‍ഷിക വിളകള്‍</td>
           <td class="align-middle">ഒരോയിനത്തിനും സകാത്തിന്റെ പരിധിയെത്താതിരിക്കുകയും വിവിധ കാര്‍ഷികയിനങ്ങളില്‍ നിന്നായി ഒരു വര്‍ഷം 650 കിലോഗ്രാം അരിയുടെ വില വരുമാനമുണ്ടെങ്കില്‍ വരവിന്റെ </td>
-          <td class="align-middle"><input tabindex="21" placeholder="Qty" class="form-control form-control-sm text-right" type="text" id="qty1"></td>
           <td class="align-middle"><input tabindex="22" placeholder="Rs."  class="form-control form-control-sm text-right" type="text" id="j1" onkeyup="calculate()"></td>
           <td class="align-middle">
 			<div class="input-group input-group-sm">
@@ -352,7 +1874,6 @@
         <tr>
           <td class="align-middle">കച്ചവടം</td>
           <td class="align-middle">കച്ചവടച്ചെലവും കൂലിയും ടാക്‌സും കഴിച്ചുള്ള ഒരു കൊല്ലത്തെ ലാഭവും കൊല്ലം തികയുമ്പോള്‍ കടയിലുള്ള വില്‍പനച്ചരക്കിന്റെ വിലയും കൂട്ടി 85 ഗ്രാം സ്വര്‍ണത്തിന്റെ വിലയുണ്ടെങ്കില്‍ ആകെയുള്ളതിന്റെ... (കിട്ടാക്കടം, ചരക്ക് വാങ്ങിയ വകയില്‍ ഇടപാടുകാര്‍ക്ക് കൊടുക്കാനുള്ള പണം എന്നിവ കിഴിക്കാവുന്നതാണ്)</td>
-          <td class="align-middle"><input tabindex="23" placeholder="Qty" class="form-control form-control-sm text-right" type="text" id="qty1"></td>
           <td class="align-middle"><input tabindex="24" placeholder="Rs."  class="form-control form-control-sm text-right" type="text" id="k1" onkeyup="calculate()"></td>
           <td class="align-middle">
 			<div class="input-group input-group-sm">
@@ -367,7 +1888,6 @@
         <tr>
           <td class="align-middle">ശമ്പളം, കൂലി, ഡോക്ടര്‍മാരുടെ ഫീസ്, എഞ്ചിനിയര്‍മാരുടെ സൂപ്പര്‍വിഷന്‍ ഫീ, കണ്‍സള്‍ട്ടന്‍സി ഫീ, കമ്മീഷന്‍ തുടങ്ങിയവ</td>
           <td class="align-middle">അടിസ്ഥാന ജീവിത ചെലവുകള്‍ കഴിച്ച് ഒരു വര്‍ഷം 85 ഗ്രാം സ്വര്‍ണ്ണത്തിന്റെ വില ഉണ്ടെങ്കില്‍</td>
-          <td class="align-middle"><input tabindex="25" placeholder="Qty" class="form-control form-control-sm text-right" type="text" id="qty1"></td>
           <td class="align-middle"><input tabindex="26"  placeholder="Rs."  class="form-control form-control-sm text-right" type="text" id="l1" onkeyup="calculate()"></td>
           <td class="align-middle">
 			<div class="input-group input-group-sm">
@@ -382,7 +1902,6 @@
         <tr>
           <td class="align-middle" rowspan="3">മത്സ്യം</td>
           <td class="align-middle">വ്യാപാര ചരക്കാണെങ്കില്‍</td>
-          <td class="align-middle"><input tabindex="27" placeholder="Qty" class="form-control form-control-sm text-right" type="text" id="qty1"></td>
           <td class="align-middle"><input tabindex="28"  placeholder="Rs."  class="form-control form-control-sm text-right" type="text" id="m1" onkeyup="calculate()"></td>
           <td class="align-middle">
 			<div class="input-group input-group-sm">
@@ -396,7 +1915,6 @@
         </tr>
         <tr>
           <td class="align-middle">മത്സ്യ ബന്ധനം നടത്തുന്നവര്‍ ലഭിച്ച വരുമാനത്തിന്റെ ചെലവ് കഴിച്ച്</td>
-          <td class="align-middle"><input tabindex="29" placeholder="Qty" class="form-control form-control-sm text-right" type="text" id="qty1"></td>
           <td class="align-middle"><input tabindex="30"  placeholder="Rs."  class="form-control form-control-sm text-right" type="text" id="n1" onkeyup="calculate()"></td>
           <td class="align-middle">
 			<div class="input-group input-group-sm">
@@ -410,7 +1928,6 @@
         </tr>
         <tr>
           <td class="align-middle">ചെലവ് കഴിക്കാതെ</td>
-          <td class="align-middle"><input tabindex="31" placeholder="Qty" class="form-control form-control-sm text-right" type="text" id="qty1"></td>
           <td class="align-middle"><input tabindex="32" placeholder="Rs."  class="form-control form-control-sm text-right" type="text" id="o1" onkeyup="calculate()"></td>
           <td class="align-middle">
 			<div class="input-group input-group-sm">
@@ -425,7 +1942,6 @@
         <tr>
           <td class="align-middle">ഷെയര്‍ (കച്ചവടം)</td>
           <td class="align-middle">കച്ചവടക്കാരന്‍ സകാത്ത് കൊടുക്കുന്നില്ലെങ്കില്‍ ഷെയര്‍ സംഖ്യയും ലാഭവിഹിതവും കൂടി 85 ഗ്രാം സ്വര്‍ണ്ണ ത്തിന്റെ വില ഉണ്ടെങ്കില്‍ ആകെയുള്ളതിന്റെ</td>
-          <td class="align-middle"><input tabindex="33" placeholder="Qty" class="form-control form-control-sm text-right" type="text" id="qty1"></td>
           <td class="align-middle"><input tabindex="34" placeholder="Rs."  class="form-control form-control-sm text-right" type="text" id="p1" onkeyup="calculate()"></td>
           <td class="align-middle">
 			<div class="input-group input-group-sm">
@@ -440,7 +1956,6 @@
         <tr>
           <td class="align-middle">ഷെയര്‍ (വ്യവസായം, സ്‌കൂള്‍ വാടകകെട്ടിടം, ആശുപത്രി തുടങ്ങിയവയില്‍)</td>
           <td class="align-middle">വാര്‍ഷിക വരുമാനം 650 കിലോഗ്രാം അരിയുടെ വില ഉണ്ടെങ്കില്‍ വരുമാനത്തിന്റ (85 ഗ്രാം സ്വര്‍ണ്ണത്തിന്റെ അത്രയുണ്ടെങ്കിലേ നല്‍കേണ്ടതുള്ളുവെന്നും 2 മ്മ ശതമാനമാണെന്നും അഭിപ്രായമുള്ളവരുണ്ട്.)</td>
-          <td class="align-middle"><input tabindex="35" placeholder="Qty" class="form-control form-control-sm text-right" type="text" id="qty1"></td>
           <td class="align-middle"><input tabindex="36"  placeholder="Rs."  class="form-control form-control-sm text-right" type="text" id="q1" onkeyup="calculate()"></td>
           <td class="align-middle">
 			<div class="input-group input-group-sm">
@@ -455,7 +1970,6 @@
         <tr>
           <td class="align-middle">റിയല്‍ എസ്റ്റേറ്റ്</td>
           <td class="align-middle">ഒരു വര്‍ഷത്തെ ലാഭവും വര്‍ഷാവസാനം കൈവശമുള്ള വില്‍പന ഭൂമിയുടെ വിലയും കൂടി 85 ഗ്രാം സ്വര്‍ണ്ണത്തിന്റെ വില ഉണ്ടെങ്കില്‍ ആകെയുള്ളതിന്റെ</td>
-          <td class="align-middle"><input tabindex="37" placeholder="Qty" class="form-control form-control-sm text-right" type="text" id="qty1"></td>
           <td class="align-middle"><input tabindex="38" placeholder="Rs."  class="form-control form-control-sm text-right" type="text" id="r1" onkeyup="calculate()"></td>
           <td class="align-middle">
 			<div class="input-group input-group-sm">
@@ -470,7 +1984,6 @@
         <tr>
           <td class="align-middle">നിധി, കരിങ്കല്ല്, വെട്ടുകല്ല്, മണല്‍ തുടങ്ങിയവ</td>
           <td class="align-middle">ചെലവും കൂലിയും കഴിച്ചുള്ള വരവിന്റെ</td>
-          <td class="align-middle"><input tabindex="39" placeholder="Qty" class="form-control form-control-sm text-right" type="text" id="qty1"></td>
           <td class="align-middle"><input tabindex="40" placeholder="Rs."  class="form-control form-control-sm text-right" type="text" id="s1" onkeyup="calculate()"></td>
           <td class="align-middle">
 			<div class="input-group input-group-sm">
@@ -485,7 +1998,6 @@
         <tr>
           <td class="align-middle">മൊത്തം വരവ്‌</td>
           <td class="align-middle">കാര്‍ഷിക വരുമാനം സകാത്തിന്റെ പരിധിയെത്തിയില്ല, കച്ചവടവും എത്തിയില്ല, എന്നാല്‍ അവയും ശമ്പളവും മറ്റു പലവിധ വരവും കൂട്ടി അടിസ്ഥാന ജീവിത ചെലവുകള്‍ കഴിച്ച് 85 ഗ്രാം സ്വര്‍ണ്ണത്തിന്റെ വില ഉണ്ടെങ്കില്‍</td>
-          <td class="align-middle"><input tabindex="41" placeholder="Qty" class="form-control form-control-sm text-right" type="text" id="qty1"></td>
           <td class="align-middle"><input tabindex="42"  placeholder="Rs."  class="form-control form-control-sm text-right" type="text" id="t1" onkeyup="calculate()"></td>
           <td class="align-middle">
 			<div class="input-group input-group-sm">
@@ -497,35 +2009,76 @@
 		 </td>
          <td class="align-middle"><input  class="form-control form-control-sm text-right"type="text" readonly id="Tot20" onkeyup="calculate()"></td>
         </tr>
-        
-
+        </tbody>
+        <tfoot class="table-footer">
+        <tr class="footer-border-top">
+          <td colspan="2" class="text-right align-middle" style="font-size: 12px;">
+            <i class="fas fa-coins"></i> SUBTOTAL (Total Assets Value):
+          </td>
+          <td class="align-middle">
+            <input class="form-control form-control-sm text-right font-weight-bold highlight-yellow" type="text" readonly id="subtotalAssets" style="font-size: 13px;" aria-label="Subtotal of all assets">
+          </td>
+          <td class="align-middle"></td>
+          <td class="align-middle">
+            <input class="form-control form-control-sm text-right font-weight-bold highlight-blue" type="text" readonly id="subtotalZakat" style="font-size: 13px;" aria-label="Subtotal of all zakat">
+          </td>
+        </tr>
+        <tr class="footer-total-row">
+          <td colspan="2" class="text-right align-middle" style="font-size: 13px;">
+            <i class="fas fa-hand-holding-usd"></i> <strong>TOTAL ZAKAT PAYABLE:</strong>
+          </td>
+          <td colspan="2" class="align-middle"></td>
+          <td class="align-middle">
+            <input class="form-control form-control-sm text-right font-weight-bold highlight-green" type="text" readonly id="footerTotal" style="font-size: 15px;" aria-label="Total zakat payable">
+          </td>
+        </tr>
 
         <tr>
-<td>          <button tabindex="45" class="d-print-none btn btn-info" onclick="window.print();"> Print </button></td>
-          <td colspan="4" class="text-right">
-          
-            <button tabindex="43" class="d-print-none btn btn-primary" onclick="getPrice()">Get Sub Total </button>
-            <button tabindex="44" class="d-print-none btn btn-success" onclick="getFullPrice()"> Get Full Total </button>
+          <td>
+            <button tabindex="45" class="d-print-none btn btn-info mr-2" onclick="exportToPDF();" aria-label="Print">
+              <i class="fas fa-print"></i> Print
+            </button>
+            <button class="d-print-none btn btn-danger" onclick="clearAll();" aria-label="Clear all">
+              <i class="fas fa-trash"></i> Clear All
+            </button>
           </td>
-
-          <td class="align-middle"><input  class="form-control form-control-sm text-right"type="text" id="result" onkeyup="calculate()"  readonly></td>
+          <td colspan="3" class="text-right">
+            <button tabindex="43" class="d-print-none btn btn-primary mr-2" onclick="getPrice();" aria-label="Calculate subtotals">
+              <i class="fas fa-calculator"></i> Get Sub Total
+            </button>
+            <button tabindex="44" class="d-print-none btn btn-success" onclick="getFullPrice();" aria-label="Calculate full total">
+              <i class="fas fa-plus-circle"></i> Get Full Total
+            </button>
+          </td>
+          <td class="align-middle"><input class="form-control form-control-sm text-right font-weight-bold" type="text" id="result" readonly aria-label="Total zakat amount" style="display:none;"></td>
         </tr>
-        <tfoot>
-
-        </tfoot>
+        </tbody>
       </table>
-
+      </div>
     </div>
-	<footer class="blog-footer">
-      <p><a href="https://www.zaliyo.com/sites/zakkath-calculator/">Zakkath Calculator</a> by <a href="https://www.zaliyo.com/">Team Zaliyo</a>.</p>
+
+    <footer class="blog-footer">
       <p>
-        <a href="#">Back to top</a>
+        <strong><a href="https://www.zaliyo.com/sites/zakkath-calculator/" rel="noopener" target="_blank">സകാത്ത് കാൽക്കുലേറ്റർ | Zakkath Calculator</a></strong> by
+        <a href="https://www.zaliyo.com/" rel="noopener" target="_blank">Team Zaliyo</a>
+      </p>
+      <p class="mt-2">
+        <a class="d-print-none" href="#top" aria-label="Back to top">↑ Back to top</a>
+      </p>
+      <p class="mt-2 text-muted small">
+        © <span id="currentYear"></span> Team Zaliyo. All rights reserved.
       </p>
     </footer>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
-</body>
-</html> 
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous" defer></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous" defer></script>
+
+    <script>
+      // Set current year in footer
+      document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
